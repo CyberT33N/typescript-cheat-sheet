@@ -56,11 +56,10 @@ const d: array = [];
 
 // verify that array only contains specific core type
 const d: string[] = ['a', 'b'];
-
-// verify that array only contains specific core type
-const d: [number, string] = [1, 'b'];
 ```
 
 ## Tuple
 ```javascript
+// verify that array only contains specific core type and contains max. 2 elements.
+const d: [number, string] = [1, 'b'];
 ```
