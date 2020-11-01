@@ -116,3 +116,22 @@ ____________________________________________________________
 function combine(a: 'Apple' | 'Fish', b: number){ /*..*/ }
 combine('Apple', 2);
 ```
+
+
+
+
+<br />
+<br />
+
+____________________________________________________________
+____________________________________________________________
+
+<br />
+<br />
+
+# Type Aliases
+```javascript
+// create const of specific uniony types
+type adminRights = number | 'FOUND'
+const d: adminRights = 'FOUND';
+```
