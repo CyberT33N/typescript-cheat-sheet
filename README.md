@@ -63,3 +63,20 @@ const d: string[] = ['a', 'b'];
 // verify that array only contains specific core type and contains max. 2 elements.
 const d: [number, string] = [1, 'b'];
 ```
+
+## Enum
+```javascript
+// create const in TS that are later get converted to vanilla JS
+enum Role {ADMIN = 'cyberjoe', ACCESSCODE = 512, DENYSTATE = false}
+const d = {
+  age: 10,
+  name: 'Julian',
+  role: Role.ADMIN
+};
+```
+
+## Any
+```javascript
+// verify if d is anything
+const d: any = 'apple';
+```
