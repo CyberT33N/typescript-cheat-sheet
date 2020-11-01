@@ -80,3 +80,20 @@ const d = {
 // verify if d is anything
 const d: any = 'apple';
 ```
+
+
+<br />
+<br />
+
+____________________________________________________________
+
+<br />
+<br />
+
+# Union Types
+```javascript
+// Check if element has multiple core types
+function combine(a: number | string, b: number){
+}
+combine('Apple', 2);
+```
