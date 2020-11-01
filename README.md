@@ -32,6 +32,11 @@ const d: string = 'house';
 const d: boolean = true;
 ```
 
+## undefined
+```javascript
+const d: undefined = undefined;
+```
+
 ## Object
 ```javascript
 // verify if d is object - method #1
@@ -134,4 +139,30 @@ ____________________________________________________________
 // create const of specific uniony types
 type adminRights = number | 'FOUND'
 const d: adminRights = 'FOUND';
+```
+
+
+
+<br />
+<br />
+
+____________________________________________________________
+____________________________________________________________
+
+<br />
+<br />
+
+# Function return types and voids
+```javascript
+// check if returned value is specific core type
+function combine(a: 'Apple' | 'Fish', b: number): boolean{
+  if( b === 1 ) return true;
+};
+combine('Apple', 2);
+
+// check if there is any return in function
+function combine(a: 'Apple' | 'Fish', b: number): void{
+  console.log( 'We do not return here..' );
+};
+combine('Apple', 2);
 ```
