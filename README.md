@@ -10,6 +10,7 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 <br />
 
 ____________________________________________________________
+____________________________________________________________
 
 <br />
 <br />
@@ -86,6 +87,7 @@ const d: any = 'apple';
 <br />
 
 ____________________________________________________________
+____________________________________________________________
 
 <br />
 <br />
@@ -94,5 +96,23 @@ ____________________________________________________________
 ```javascript
 // Check if element has multiple core types
 function combine(a: number | string, b: number){ /*..*/ }
+combine('Apple', 2);
+```
+
+
+
+<br />
+<br />
+
+____________________________________________________________
+____________________________________________________________
+
+<br />
+<br />
+
+# Literal Types
+```javascript
+// Check if element has specific value
+function combine(a: 'Apple' | 'Fish', b: number){ /*..*/ }
 combine('Apple', 2);
 ```
