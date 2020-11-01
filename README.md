@@ -93,7 +93,6 @@ ____________________________________________________________
 # Union Types
 ```javascript
 // Check if element has multiple core types
-function combine(a: number | string, b: number){
-}
+function combine(a: number | string, b: number){ /*..*/ }
 combine('Apple', 2);
 ```
