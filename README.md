@@ -256,3 +256,44 @@ doHomework(21, () = >{
   console.log('Function doHomework() was finished..');
 });
 ```
+
+
+
+<br />
+<br />
+
+____________________________________________________________
+____________________________________________________________
+
+<br />
+<br />
+
+# Compiling
+
+## Convert single .ts file to .js
+```bash
+tsc app.ts
+```
+
+<br />
+<br />
+
+
+## Watch Node (Automatically convert .ts file to .js when .ts was edited and saved)
+
+#### single file
+```bash
+# Method #1
+tsc app.ts --watch
+
+# Method #2
+tsc app.ts -w
+```
+
+#### all files in project
+```bash
+# This will use all .ts files in the root folder (recursive) where the command was run
+tsc --init
+
+# You could run now aswell the tsc command to compile all .ts files to .js or as usually manually edit and save the .ts files
+```
