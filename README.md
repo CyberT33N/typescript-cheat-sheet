@@ -336,7 +336,9 @@ ____________________________________________________________
 
 # tsconfig.json (https://www.typescriptlang.org/tsconfig/)
 
-## target (https://www.typescriptlang.org/tsconfig#target)
+## Basic Options
+
+#### target (https://www.typescriptlang.org/tsconfig#target)
 ```javascript
 // Default: ES3
 // Allowed: ES3 (default), ES5, ES6/ES2015 (synonymous), ES7/ES2016, ES2017, ES2018, ES2019, ES2020, ESNext
@@ -344,14 +346,14 @@ ____________________________________________________________
 ```
 
 
-## lib (https://www.typescriptlang.org/tsconfig#lib)
+#### lib (https://www.typescriptlang.org/tsconfig#lib)
 ```javascript
 // For default lib is disabled and all library components are allowed. If you enabled it then you must specify which exactly you want to allow.
 {   "compilerOptions": {"lib": ['dom', 'es6', 'dom.iterable', 'scripthost']}   }
 ```
 
 
-## sourceMap (https://www.typescriptlang.org/tsconfig#sourceMap)
+#### sourceMap (https://www.typescriptlang.org/tsconfig#sourceMap)
 ```javascript
 // Enables the generation of sourcemap files. These files allow debuggers and other tools to display the original TypeScript source code when actually working with the emitted JavaScript files.
 {   "compilerOptions": {"sourceMap": true}   }
@@ -361,14 +363,14 @@ ____________________________________________________________
 <br />
 <br />
 
-## outDir (https://www.typescriptlang.org/tsconfig#outDir)
+#### outDir (https://www.typescriptlang.org/tsconfig#outDir)
 ```javascript
 // Define the output folder of the compiled files - Notice here that folder structure will also be copied not only the files you will compile.
 {   "compilerOptions": {"outDir": "./dist"}   }
 ```
 
 
-## rootDir (https://www.typescriptlang.org/tsconfig#rootDir)
+#### rootDir (https://www.typescriptlang.org/tsconfig#rootDir)
 ```javascript
 // Define the input folder of the compiled files. Basicly the same like include
 {   "compilerOptions": {"outDir": "./src"}   }
@@ -379,20 +381,41 @@ ____________________________________________________________
 <br />
 
 
-## removeComments (https://www.typescriptlang.org/tsconfig#removeComments)
+#### removeComments (https://www.typescriptlang.org/tsconfig#removeComments)
 ```javascript
 // Remove Comments like as example this text here..
 {   "compilerOptions": {"removeComments": true}   }
 ```
 
-## noEmit (https://www.typescriptlang.org/tsconfig#noEmit)
+<br />
+<br />
+
+#### noEmit (https://www.typescriptlang.org/tsconfig#noEmit)
 ```javascript
 // Compile will not create any .js file when noEmit is true. This is usefully when you just want to check the project for errors but do not directly want to convert your .ts files to .js
 {   "compilerOptions": {"noEmit": true}   }
 ```
 
+#### noEmitOnError (https://www.typescriptlang.org/tsconfig#noEmitOnError)
+```javascript
+/*Do not emit compiler output files like JavaScript source code, source-maps or declarations if any errors were reported.
 
-## Include (https://www.typescriptlang.org/tsconfig#include) & Exclude (https://www.typescriptlang.org/tsconfig#exclude)
+This defaults to false, making it easier to work with TypeScript in a watch-like environment where you may want to see results of changes to your code in another environment before making sure all errors are resolved.*/
+{   "compilerOptions": {"noEmit": true}   }
+```
+
+#### downlevelIteration (https://www.typescriptlang.org/tsconfig#downlevelIteration)
+```javascript
+// Downleveling is TypeScript’s term for transpiling to an older version of JavaScript. This flag is to enable support for a more accurate implementation of how modern JavaScript iterates through new concepts in older JavaScript runtimes.
+{   "downlevelIteration": true   }
+```
+
+
+<br />
+<br />
+
+
+#### Include (https://www.typescriptlang.org/tsconfig#include) & Exclude (https://www.typescriptlang.org/tsconfig#exclude)
 Exclude will blacklist folder/files from compiling process. Include instead will whitelist them.
 <br /><br />
 However, notice here that once you use the include element only specified files/folder will get compiled and everything else you did not include there will be not compiled.
@@ -411,3 +434,38 @@ However, notice here that once you use the include element only specified files/
 // exclude any file which ends with .min.js from any folder
 "exclude": ['**/*.min.ts']
 ```
+
+
+
+
+<br />
+<br />
+
+## Additional Checks
+
+#### noUnusedLocals (https://www.typescriptlang.org/tsconfig#noUnusedLocals)
+```javascript
+// check if variables are unused
+{   "noUnusedLocals": true   }
+```
+
+#### noUnusedParameters (https://www.typescriptlang.org/tsconfig#noUnusedParameters)
+```javascript
+// check if Parameters are unused
+{   "noUnusedParameters": true   }
+```
+
+#### noImplicitReturns (https://www.typescriptlang.org/tsconfig#noImplicitReturns)
+```javascript
+// check if functions always return something
+// {   "noImplicitReturns": true   }
+function app(num){
+  if(num === 13) { return true }
+};
+
+```
+
+
+<br />
+<br />
+
