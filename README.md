@@ -350,7 +350,49 @@ ____________________________________________________________
 {   "compilerOptions": {"lib": ['dom', 'es6', 'dom.iterable', 'scripthost']}   }
 ```
 
-## Include & Exclude files from compiling process
+
+## sourceMap (https://www.typescriptlang.org/tsconfig#sourceMap)
+```javascript
+// Enables the generation of sourcemap files. These files allow debuggers and other tools to display the original TypeScript source code when actually working with the emitted JavaScript files.
+{   "compilerOptions": {"sourceMap": true}   }
+```
+
+
+<br />
+<br />
+
+## outDir (https://www.typescriptlang.org/tsconfig#outDir)
+```javascript
+// Define the output folder of the compiled files - Notice here that folder structure will also be copied not only the files you will compile.
+{   "compilerOptions": {"outDir": "./dist"}   }
+```
+
+
+## rootDir (https://www.typescriptlang.org/tsconfig#rootDir)
+```javascript
+// Define the input folder of the compiled files. Basicly the same like include
+{   "compilerOptions": {"outDir": "./src"}   }
+```
+
+
+<br />
+<br />
+
+
+## removeComments (https://www.typescriptlang.org/tsconfig#removeComments)
+```javascript
+// Remove Comments like as example this text here..
+{   "compilerOptions": {"removeComments": true}   }
+```
+
+## noEmit (https://www.typescriptlang.org/tsconfig#noEmit)
+```javascript
+// Compile will not create any .js file when noEmit is true. This is usefully when you just want to check the project for errors but do not directly want to convert your .ts files to .js
+{   "compilerOptions": {"noEmit": true}   }
+```
+
+
+## Include (https://www.typescriptlang.org/tsconfig#include) & Exclude (https://www.typescriptlang.org/tsconfig#exclude)
 Exclude will blacklist folder/files from compiling process. Include instead will whitelist them.
 <br /><br />
 However, notice here that once you use the include element only specified files/folder will get compiled and everything else you did not include there will be not compiled.
