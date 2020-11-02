@@ -37,11 +37,23 @@ const d: boolean = true;
 const d: undefined = undefined;
 ```
 
+## unknown
+```javascript
+function app(){ return 'We don´t know yet what will return here.. ' };
+const d: unknown = app();
+```
+
+
 
 ## function
 ```javascript
 function app(){ /*..*/ };
+
+// verify if d is function - method #1
 const d: Function = app;
+
+// verify if d is function - method #2
+const d: () = app;
 ```
 
 ## Object
