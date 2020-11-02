@@ -37,12 +37,55 @@ const d: boolean = true;
 const d: undefined = undefined;
 ```
 
+
+
+
+
+
+<br />
+<br />
+
+## Any
+```javascript
+// verify if d is any core type (any has no restriction in TS compared to unknown)
+const d: any = 'apple';
+```
 ## unknown
 ```javascript
-function app(){ return 'We don´t know yet what will return here.. ' };
-const d: unknown = app();
+// https://youtu.be/BwuLxPH8IDs?t=7883
+let userInput: unknown;
+let userName: string;
+
+// If userInput would be a number instead of 'Max' and userName would not be inside of the if State then we would get a TS error because userName must be string. Please check 'TS Error' example below. TS will detect if states!
+userInput = 'Max';
+if(typeof userInput === 'string') {
+   userName = userInput
+}
+
+// TS Error
+userInput = 3;
+userName = userInput
 ```
 
+
+<br />
+<br />
+
+
+
+## never
+```javascript
+function errorMessage(msg: string, code: number): never {
+  throw {msg: msg, code: code};
+}
+
+errorMessage('no ram', 23);
+console.log( 'This log will NEVER come cause errorMessage will throw error and stop the script' );
+```
+
+
+<br />
+<br />
 
 
 ## function
@@ -98,12 +141,6 @@ const d = {
   name: 'Julian',
   role: Role.ADMIN
 };
-```
-
-## Any
-```javascript
-// verify if d is anything
-const d: any = 'apple';
 ```
 
 
