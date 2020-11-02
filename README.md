@@ -37,6 +37,13 @@ const d: boolean = true;
 const d: undefined = undefined;
 ```
 
+
+## function
+```javascript
+function app(){ /*..*/ };
+const d: Function = app;
+```
+
 ## Object
 ```javascript
 // verify if d is object - method #1
@@ -165,4 +172,27 @@ function combine(a: 'Apple' | 'Fish', b: number): void{
   console.log( 'We do not return here..' );
 };
 combine('Apple', 2);
+```
+
+<br />
+<br />
+
+____________________________________________________________
+____________________________________________________________
+
+<br />
+<br />
+
+# Function Types
+
+## Check if element is function with no parameter and check the core type of the return
+```javascript
+function app(){ return 13 };
+const d: () => number = app;
+```
+
+## Check if element is function with two parameter
+```javascript
+function app(name, age){ /*.. no return here .. Thats why we use void in this case!*/ };
+const d: (a: number, b: boolean) => void = app;
 ```
