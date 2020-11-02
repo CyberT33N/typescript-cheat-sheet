@@ -196,3 +196,14 @@ const d: () => number = app;
 function app(name, age){ /*.. no return here .. Thats why we use void in this case!*/ };
 const d: (a: number, b: boolean) => void = app;
 ```
+
+## Callbacks
+```javascript
+function doHomework(age: number, callback: (a:number) => void) {
+  callback(++age);
+}
+
+doHomework(21, () = >{
+  console.log('Function doHomework() was finished..');
+});
+```
