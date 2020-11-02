@@ -6,6 +6,7 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+
 <br />
 <br />
 
@@ -153,6 +154,24 @@ ____________________________________________________________
 <br />
 <br />
 
+# Postfix
+
+## ! (Tell typescript that unknown element will exist in the future)
+```javascript
+const button = document.querySelector('#header')!;
+```
+
+<br />
+<br />
+
+____________________________________________________________
+____________________________________________________________
+
+<br />
+<br />
+
+# Check
+
 # Union Types
 ```javascript
 // Check if element has multiple core types
@@ -258,7 +277,6 @@ doHomework(21, () = >{
 ```
 
 
-
 <br />
 <br />
 
@@ -273,6 +291,11 @@ ____________________________________________________________
 ## Convert single .ts file to .js
 ```bash
 tsc app.ts
+```
+
+## Convert all .ts files in folder to .js
+```bash
+tsc
 ```
 
 <br />
@@ -295,5 +318,54 @@ tsc app.ts -w
 # This will use all .ts files in the root folder (recursive) where the command was run
 tsc --init
 
-# You could run now aswell the tsc command to compile all .ts files to .js or as usually manually edit and save the .ts files
+# Enable Watch Node for all files in the folder (recursive)
+tsc -w
+```
+
+
+
+
+<br />
+<br />
+
+____________________________________________________________
+____________________________________________________________
+
+<br />
+<br />
+
+# tsconfig.json (https://www.typescriptlang.org/tsconfig/)
+
+## target (https://www.typescriptlang.org/tsconfig#target)
+```javascript
+// Default: ES3
+// Allowed: ES3 (default), ES5, ES6/ES2015 (synonymous), ES7/ES2016, ES2017, ES2018, ES2019, ES2020, ESNext
+{   "compilerOptions": {"target": "es6"}   }
+```
+
+
+## lib (https://www.typescriptlang.org/tsconfig#lib)
+```javascript
+// For default lib is disabled and all library components are allowed. If you enabled it then you must specify which exactly you want to allow.
+{   "compilerOptions": {"lib": ['dom', 'es6', 'dom.iterable', 'scripthost']}   }
+```
+
+## Include & Exclude files from compiling process
+Exclude will blacklist folder/files from compiling process. Include instead will whitelist them.
+<br /><br />
+However, notice here that once you use the include element only specified files/folder will get compiled and everything else you did not include there will be not compiled.
+```javascript
+// node_modules folder should be already ignored for default
+
+{
+   "compilerOptions": {},
+   "exclude": ['app.ts', 'node_modules'],
+   "include": ['services.ts']
+}
+
+// exclude any file which ends with .min.js
+"exclude": ['*.min.ts']
+
+// exclude any file which ends with .min.js from any folder
+"exclude": ['**/*.min.ts']
 ```
