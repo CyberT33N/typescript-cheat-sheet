@@ -200,6 +200,26 @@ combine('Apple', 2);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br />
 <br />
 
@@ -215,6 +235,36 @@ ____________________________________________________________
 type adminRights = number | 'FOUND'
 const d: adminRights = 'FOUND';
 ```
+
+## Function
+```
+type Props = {
+     params: {
+           productId: string
+     }
+}
+
+/**
+ * Renders the page for a specific product ID.
+ * @param {Object} props - The component props.
+ * @param {Object} props.params - The parameters object containing the product ID.
+ * @param {string} props.params.productId - The product ID.
+ * @returns {JSX.Element} The rendered page.
+ */
+export default function ProductsId({ params }: Props) {
+    return (
+        <>
+            <h1>Product Id: { params.productId }</h1>
+        </>
+    )
+}
+```
+
+
+
+
+
+
 
 
 
