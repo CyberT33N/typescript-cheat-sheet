@@ -249,6 +249,43 @@ ____________________________________________________________
 <br>
 <br>
 
+# process.env
+- https://stackoverflow.com/questions/45194598/using-process-env-in-typescript
+  
+```shell
+npm i --save-dev @types/node
+```
+  
+- Create at your root environment.d.ts
+```javascript
+export declare global {
+    namespace NodeJS {
+        interface ProcessEnv {
+            [key: string]: string;
+        }
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+____________________________________________________________
+____________________________________________________________
+<br>
+<br>
+
 # Global
 - Create at your root global.d.ts
 ```
