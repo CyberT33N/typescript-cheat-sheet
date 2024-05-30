@@ -143,20 +143,43 @@ const d = {
 ```
 
 
-<br />
-<br />
 
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
 ____________________________________________________________
 ____________________________________________________________
+<br><br>
+<br><br>
 
-<br />
-<br />
 
 # Postfix
 
 ## ! (Tell typescript that unknown element will exist in the future)
 ```javascript
 const button = document.querySelector('#header')!;
+```
+
+### Classes example
+- In this example BalanceManager will be extended from a parent class which will assign this.web3
+```typescript
+export default class BalanceManager  {
+    web3!: Web3
+
+    async getBalance(address: string) {
+        const balance = await this.web3.eth.getBalance(address)
+        return balance
+    }
+}
 ```
 
 
@@ -189,13 +212,12 @@ const button = document.querySelector('#header')!;
 
 
 
-
-<br>
-<br>
+<br><br>
+<br><br>
 ____________________________________________________________
 ____________________________________________________________
-<br>
-<br>
+<br><br>
+<br><br>
 
 # Check
 
@@ -208,14 +230,36 @@ combine('Apple', 2);
 
 
 
-<br />
-<br />
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
 ____________________________________________________________
 ____________________________________________________________
-
-<br />
-<br />
+<br><br>
+<br><br>
 
 # Literal Types
 ```javascript
@@ -279,12 +323,16 @@ export declare global {
 
 
 
-<br>
-<br>
+
+
+
+
+<br><br>
+<br><br>
 ____________________________________________________________
 ____________________________________________________________
-<br>
-<br>
+<br><br>
+<br><br>
 
 # Global
 - Create at your root global.d.ts
