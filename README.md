@@ -238,18 +238,23 @@ class MongooseUtils {
 
 ### Db
 ```typescript
-import { MongoClient, Db } from 'mongodb
+import { MongoClient, Db, Collection } from 'mongodb
 
 class MongoUtils {
     // eslint-disable-next-line no-use-before-define
     private static instance: MongoUtils
+
     private connectionString: string
     private mongoClient: MongoClient
-    private db: Db | null
+
+    private dbConn: Db | null
+    private collectionConn: Collection | null
 
 
     private constructor() {
-        this.db = null
+        this.dbConn = null
+        this.collectionConn = null
+
         this.connectionString = process.env.MONGODB_CONNECTION_STRING
         this.mongoClient = new MongoClient(this.connectionString)
     }
@@ -257,12 +262,18 @@ class MongoUtils {
     private async getDbConnection() {
         try {
             const client = await this.mongoClient.connect()
-            this.db = client.db(process.env.DB)
+            this.dbConn = client.db(process.env.DB)
         } catch (e) {
             throw new BaseError('Error while try to get MongoDB Connection', e)
         }
     }
 
+   private async getCollectionConn(collectionName: string) {
+        const dbConn = await this.getConnection()
+
+        const collectionConn = dbConn.collection(collectionName)
+        return collectionConn
+    }
 }
 ```
 
