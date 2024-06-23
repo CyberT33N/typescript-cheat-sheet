@@ -7,12 +7,12 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
-<br>
-<br>
+<br><br>
+<br><br>
 ____________________________________________________________
 ____________________________________________________________
-<br>
-<br>
+<br><br>
+<br><br>
 
 # Core Types
 
@@ -141,6 +141,77 @@ const d = {
   role: Role.ADMIN
 };
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+# Dependencies
+
+## MongoDB
+
+### Db
+```typescript
+import { MongoClient, Db } from 'mongodb
+
+class MongoUtils {
+    // eslint-disable-next-line no-use-before-define
+    private static instance: MongoUtils
+    private connectionString: string
+    private mongoClient: MongoClient
+    private db: Db | null
+
+
+    private constructor() {
+        this.db = null
+        this.connectionString = process.env.MONGODB_CONNECTION_STRING
+        this.mongoClient = new MongoClient(this.connectionString)
+    }
+
+    private async getDbConnection() {
+        try {
+            const client = await this.mongoClient.connect()
+            this.db = client.db(process.env.DB)
+        } catch (e) {
+            throw new BaseError('Error while try to get MongoDB Connection', e)
+        }
+    }
+
+}
+```
+
+
+
+
+
 
 
 
