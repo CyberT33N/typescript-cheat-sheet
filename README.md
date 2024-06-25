@@ -193,6 +193,60 @@ ____________________________________________________________
 <br><br>
 
 ### Connection
+- https://github.com/Automattic/mongoose/blob/master/types/connection.d.ts
+
+<br><br>
+
+#### createConnection
+```typescript
+import mongoose, { ConnectOptions, Connection } from 'mongoose'
+
+class MongooseUtils {
+    // eslint-disable-next-line no-use-before-define
+    private static instance: MongooseUtils
+    private conn: mongoose.Connection | null
+    private connectionString: string
+
+    private constructor() {
+        this.conn = null
+        this.connectionString = process.env.MONGODB_CONNECTION_STRING
+    }
+
+    private async init() {
+        if (_.isEmpty(this.conn)) {
+            try {
+                this.conn = await mongoose.createConnection(this.connectionString).asPromise() as Connection
+            } catch (e: any) {
+                throw new BaseError('MongooseUtils() - Error while init connection with mongoose', e)
+            }
+        }
+    }
+}
+```
+
+
+<br><br>
+
+#### connect
+```typescript
+import mongoose, { ConnectOptions, Connection } from 'mongoose'
+
+class MongooseUtils {
+    // eslint-disable-next-line no-use-before-define
+    private static instance: MongooseUtils
+    private conn: mongoose.Mongoose
+
+    public async createMConn(
+        name: string
+    ) {
+        this.conn = await mongoose.connect(connectionString, { dbName } as ConnectOptions)
+    }
+}
+```
+
+<br><br>
+
+#### connect
 ```typescript
 import mongoose from 'mongoose'
 
@@ -219,8 +273,6 @@ class MongooseUtils {
 
 }
 ```
-
-
 
 
 
