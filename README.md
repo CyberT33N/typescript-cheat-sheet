@@ -7,6 +7,11 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -162,6 +167,27 @@ const d = {
 
 
 
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+# Comments
+
+<br><br>
+
+## Ignore
+```typescript
+// @ts-ignore
+import ErrorManager from 'ErrorManager'
+```
 
 
 
@@ -500,10 +526,22 @@ ____________________________________________________________
 - Create at your root global.d.ts
 ```
 interface Window {
-     ethereum: any
+    ethereum: any
+    VANTA: any
+    vantaSession: any
 }
 ```
-
+- Make sure the tsconfig.json has proper sections for include and exclude. Example follows:
+    ```typescript
+    "include": [
+        "src/**/*.ts",
+      ],
+      "exclude": [
+        "node_modules",
+        "<node_internals>/**",
+        "bin/**"
+      ]
+    ```
 
 
 
