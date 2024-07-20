@@ -12,6 +12,56 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+# Convert plain js project to typescript
+1. npm i -g typescript
+
+2. tsc --init or create tsconfig.json by yourself:
+```
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "outDir": "dist"
+  },
+  "include": [
+    "scripts/**/*"
+  ]
+}
+```
+- https://learn.microsoft.com/de-de/visualstudio/javascript/compile-typescript-code-npm?view=vs-2022
+
+3. Rename .js files to .ts
+
+4. Add to package.json:
+```javascript
+"scripts": {
+  "build": "tsc --build",
+  "clean": "tsc --build --clean"
+},
+```
+
+5. Run npm run build to veriy that everythin can compile
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
