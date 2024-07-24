@@ -62,6 +62,27 @@ ____________________________________________________________
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -71,20 +92,28 @@ ____________________________________________________________
 
 # Core Types
 
+<br><br>
+
 ## Number
 ```javascript
 const d: number = 3;
 ```
+
+<br><br>
 
 ## String
 ```javascript
 const d: string = 'house';
 ```
 
+<br><br>
+
 ## Boolean
 ```javascript
 const d: boolean = true;
 ```
+
+<br><br>
 
 ## undefined
 ```javascript
@@ -93,17 +122,16 @@ const d: undefined = undefined;
 
 
 
-
-
-
-<br />
-<br />
+<br><br>
 
 ## Any
 ```javascript
 // verify if d is any core type (any has no restriction in TS compared to unknown)
 const d: any = 'apple';
 ```
+
+<br><br>
+
 ## unknown
 ```javascript
 // https://youtu.be/BwuLxPH8IDs?t=7883
@@ -122,9 +150,7 @@ userName = userInput
 ```
 
 
-<br />
-<br />
-
+<br><br>
 
 
 ## never
@@ -138,9 +164,7 @@ console.log( 'This log will NEVER come cause errorMessage will throw error and s
 ```
 
 
-<br />
-<br />
-
+<br><br>
 
 ## function
 ```javascript
@@ -152,6 +176,8 @@ const d: Function = app;
 // verify if d is function - method #2
 const d: () = app;
 ```
+
+<br><br>
 
 ## Object
 ```javascript
@@ -168,6 +194,8 @@ const d: {age: number, name: string} = {
 };
 ```
 
+<br><br>
+
 ## Array
 ```javascript
 // verify if d is array - method #1
@@ -180,11 +208,15 @@ const d: array = [];
 const d: string[] = ['a', 'b'];
 ```
 
+<br><br>
+
 ## Tuple
 ```javascript
 // verify that array only contains specific core type and contains max. 2 elements.
 const d: [number, string] = [1, 'b'];
 ```
+
+<br><br>
 
 ## Enum
 ```javascript
@@ -195,6 +227,57 @@ const d = {
   name: 'Julian',
   role: Role.ADMIN
 };
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+# Casting
+
+## as
+```typescript
+let x: unknown = 'hello';
+console.log((x as string).length);
+```
+
+<br><br>
+
+
+## <>
+```typescript
+let x: unknown = 'hello';
+console.log((<string>x).length);
 ```
 
 
