@@ -12,6 +12,168 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+<br />
+<br />
+
+____________________________________________________________
+____________________________________________________________
+
+<br />
+<br />
+
+# tsconfig.json (https://www.typescriptlang.org/tsconfig/)
+
+## Basic Options
+
+#### target (https://www.typescriptlang.org/tsconfig#target)
+```javascript
+// Default: ES3
+// Allowed: ES3 (default), ES5, ES6/ES2015 (synonymous), ES7/ES2016, ES2017, ES2018, ES2019, ES2020, ESNext
+{   "compilerOptions": {"target": "es6"}   }
+```
+
+
+#### lib (https://www.typescriptlang.org/tsconfig#lib)
+```javascript
+// For default lib is disabled and all library components are allowed. If you enabled it then you must specify which exactly you want to allow.
+{   "compilerOptions": {"lib": ['dom', 'es6', 'dom.iterable', 'scripthost']}   }
+```
+
+
+#### sourceMap (https://www.typescriptlang.org/tsconfig#sourceMap)
+```javascript
+// Enables the generation of sourcemap files. These files allow debuggers and other tools to display the original TypeScript source code when actually working with the emitted JavaScript files.
+{   "compilerOptions": {"sourceMap": true}   }
+```
+
+
+<br />
+<br />
+
+#### outDir (https://www.typescriptlang.org/tsconfig#outDir)
+```javascript
+// Define the output folder of the compiled files - Notice here that folder structure will also be copied not only the files you will compile.
+{   "compilerOptions": {"outDir": "./dist"}   }
+```
+
+
+#### rootDir (https://www.typescriptlang.org/tsconfig#rootDir)
+```javascript
+// Define the input folder of the compiled files. Basicly the same like include
+{   "compilerOptions": {"outDir": "./src"}   }
+```
+
+
+<br />
+<br />
+
+
+#### removeComments (https://www.typescriptlang.org/tsconfig#removeComments)
+```javascript
+// Remove Comments like as example this text here..
+{   "compilerOptions": {"removeComments": true}   }
+```
+
+<br />
+<br />
+
+#### noEmit (https://www.typescriptlang.org/tsconfig#noEmit)
+```javascript
+// Compile will not create any .js file when noEmit is true. This is usefully when you just want to check the project for errors but do not directly want to convert your .ts files to .js
+{   "compilerOptions": {"noEmit": true}   }
+```
+
+#### noEmitOnError (https://www.typescriptlang.org/tsconfig#noEmitOnError)
+```javascript
+/*Do not emit compiler output files like JavaScript source code, source-maps or declarations if any errors were reported.
+
+This defaults to false, making it easier to work with TypeScript in a watch-like environment where you may want to see results of changes to your code in another environment before making sure all errors are resolved.*/
+{   "compilerOptions": {"noEmit": true}   }
+```
+
+#### downlevelIteration (https://www.typescriptlang.org/tsconfig#downlevelIteration)
+```javascript
+// Downleveling is TypeScript’s term for transpiling to an older version of JavaScript. This flag is to enable support for a more accurate implementation of how modern JavaScript iterates through new concepts in older JavaScript runtimes.
+{   "downlevelIteration": true   }
+```
+
+
+<br />
+<br />
+
+
+#### Include (https://www.typescriptlang.org/tsconfig#include) & Exclude (https://www.typescriptlang.org/tsconfig#exclude)
+Exclude will blacklist folder/files from compiling process. Include instead will whitelist them.
+<br /><br />
+However, notice here that once you use the include element only specified files/folder will get compiled and everything else you did not include there will be not compiled.
+```javascript
+// node_modules folder should be already ignored for default
+
+{
+   "compilerOptions": {},
+   "exclude": ['app.ts', 'node_modules'],
+   "include": ['services.ts']
+}
+
+// exclude any file which ends with .min.js
+"exclude": ['*.min.ts']
+
+// exclude any file which ends with .min.js from any folder
+"exclude": ['**/*.min.ts']
+```
+
+
+
+
+<br />
+<br />
+
+## Additional Checks
+
+#### noUnusedLocals (https://www.typescriptlang.org/tsconfig#noUnusedLocals)
+```javascript
+// check if variables are unused
+{   "noUnusedLocals": true   }
+```
+
+#### noUnusedParameters (https://www.typescriptlang.org/tsconfig#noUnusedParameters)
+```javascript
+// check if Parameters are unused
+{   "noUnusedParameters": true   }
+```
+
+#### noImplicitReturns (https://www.typescriptlang.org/tsconfig#noImplicitReturns)
+```javascript
+// check if functions always return something
+// {   "noImplicitReturns": true   }
+function app(num){
+  if(num === 13) { return true }
+};
+
+```
+
+
+<br><br>
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br><br>
 <br><br>
@@ -309,6 +471,167 @@ let FIXT_NewPairs: NewPairs
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+
+
+# Differences Between `interface` and `type`
+
+## Extensibility:
+
+- **Interfaces** can be extended using the `extends` keyword.
+- **Type aliases** can be extended using intersection types.
+
+## Declaration Merging:
+
+- **Interfaces** can merge declarations. If you define an interface with the same name multiple times, TypeScript will merge them into a single interface.
+- **Type aliases** do not support declaration merging.
+
+## Use Cases:
+
+- **Interfaces** are typically used to define the shape of objects and are often preferred when defining APIs and classes.
+- **Type aliases** are more versatile and can be used for complex type definitions, unions, and intersections.
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+
+
+
+# Interface
+- An interface is used to define a structure for an object. Interfaces can describe the properties and methods that an object should have. They are useful for defining contracts within your code and can be extended or implemented by classes.
+```typescript
+interface User {
+  name: string;
+  age: number;
+  greet(): string;
+}
+
+const user: User = {
+  name: "Alice",
+  age: 30,
+  greet() {
+    return `Hello, my name is ${this.name}`;
+  }
+};
+```
+
+
+
+<br><br>
+<br><br>
+
+
+## Extending an Interface
+```typescript
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+
+const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
+```
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+# Type
+```typescript
+type Point = {
+  x: number;
+  y: number;
+};
+
+type Response = string | number | boolean;
+
+const point: Point = { x: 10, y: 20 };
+const response: Response = "Success";
+```
+
+<br><br>
+<br><br<
+
+
+## Extending a Type Alia
+```typescript
+type Animal = {
+  name: string;
+};
+
+type Dog = Animal & {
+  breed: string;
+};
+
+const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -375,6 +698,27 @@ ____________________________________________________________
 // @ts-ignore
 import ErrorManager from 'ErrorManager'
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -456,6 +800,11 @@ class MongoUtils {
     }
 }
 ```
+
+
+
+
+
 
 
 
@@ -842,148 +1191,4 @@ tsc -w
 
 
 
-
-<br />
-<br />
-
-____________________________________________________________
-____________________________________________________________
-
-<br />
-<br />
-
-# tsconfig.json (https://www.typescriptlang.org/tsconfig/)
-
-## Basic Options
-
-#### target (https://www.typescriptlang.org/tsconfig#target)
-```javascript
-// Default: ES3
-// Allowed: ES3 (default), ES5, ES6/ES2015 (synonymous), ES7/ES2016, ES2017, ES2018, ES2019, ES2020, ESNext
-{   "compilerOptions": {"target": "es6"}   }
-```
-
-
-#### lib (https://www.typescriptlang.org/tsconfig#lib)
-```javascript
-// For default lib is disabled and all library components are allowed. If you enabled it then you must specify which exactly you want to allow.
-{   "compilerOptions": {"lib": ['dom', 'es6', 'dom.iterable', 'scripthost']}   }
-```
-
-
-#### sourceMap (https://www.typescriptlang.org/tsconfig#sourceMap)
-```javascript
-// Enables the generation of sourcemap files. These files allow debuggers and other tools to display the original TypeScript source code when actually working with the emitted JavaScript files.
-{   "compilerOptions": {"sourceMap": true}   }
-```
-
-
-<br />
-<br />
-
-#### outDir (https://www.typescriptlang.org/tsconfig#outDir)
-```javascript
-// Define the output folder of the compiled files - Notice here that folder structure will also be copied not only the files you will compile.
-{   "compilerOptions": {"outDir": "./dist"}   }
-```
-
-
-#### rootDir (https://www.typescriptlang.org/tsconfig#rootDir)
-```javascript
-// Define the input folder of the compiled files. Basicly the same like include
-{   "compilerOptions": {"outDir": "./src"}   }
-```
-
-
-<br />
-<br />
-
-
-#### removeComments (https://www.typescriptlang.org/tsconfig#removeComments)
-```javascript
-// Remove Comments like as example this text here..
-{   "compilerOptions": {"removeComments": true}   }
-```
-
-<br />
-<br />
-
-#### noEmit (https://www.typescriptlang.org/tsconfig#noEmit)
-```javascript
-// Compile will not create any .js file when noEmit is true. This is usefully when you just want to check the project for errors but do not directly want to convert your .ts files to .js
-{   "compilerOptions": {"noEmit": true}   }
-```
-
-#### noEmitOnError (https://www.typescriptlang.org/tsconfig#noEmitOnError)
-```javascript
-/*Do not emit compiler output files like JavaScript source code, source-maps or declarations if any errors were reported.
-
-This defaults to false, making it easier to work with TypeScript in a watch-like environment where you may want to see results of changes to your code in another environment before making sure all errors are resolved.*/
-{   "compilerOptions": {"noEmit": true}   }
-```
-
-#### downlevelIteration (https://www.typescriptlang.org/tsconfig#downlevelIteration)
-```javascript
-// Downleveling is TypeScript’s term for transpiling to an older version of JavaScript. This flag is to enable support for a more accurate implementation of how modern JavaScript iterates through new concepts in older JavaScript runtimes.
-{   "downlevelIteration": true   }
-```
-
-
-<br />
-<br />
-
-
-#### Include (https://www.typescriptlang.org/tsconfig#include) & Exclude (https://www.typescriptlang.org/tsconfig#exclude)
-Exclude will blacklist folder/files from compiling process. Include instead will whitelist them.
-<br /><br />
-However, notice here that once you use the include element only specified files/folder will get compiled and everything else you did not include there will be not compiled.
-```javascript
-// node_modules folder should be already ignored for default
-
-{
-   "compilerOptions": {},
-   "exclude": ['app.ts', 'node_modules'],
-   "include": ['services.ts']
-}
-
-// exclude any file which ends with .min.js
-"exclude": ['*.min.ts']
-
-// exclude any file which ends with .min.js from any folder
-"exclude": ['**/*.min.ts']
-```
-
-
-
-
-<br />
-<br />
-
-## Additional Checks
-
-#### noUnusedLocals (https://www.typescriptlang.org/tsconfig#noUnusedLocals)
-```javascript
-// check if variables are unused
-{   "noUnusedLocals": true   }
-```
-
-#### noUnusedParameters (https://www.typescriptlang.org/tsconfig#noUnusedParameters)
-```javascript
-// check if Parameters are unused
-{   "noUnusedParameters": true   }
-```
-
-#### noImplicitReturns (https://www.typescriptlang.org/tsconfig#noImplicitReturns)
-```javascript
-// check if functions always return something
-// {   "noImplicitReturns": true   }
-function app(num){
-  if(num === 13) { return true }
-};
-
-```
-
-
-<br />
-<br />
 
