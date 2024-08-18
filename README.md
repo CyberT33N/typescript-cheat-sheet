@@ -262,7 +262,8 @@ ____________________________________________________________
 <br><br>
 <br><br>
 
-## Single file
+## Single export
+- If needed you can create a single file to export your type or interface
 
 a.ts
 ```typescript
@@ -279,6 +280,33 @@ let FIXT_NewPairs: NewPairs
 ```
 
 
+
+
+<br><br>
+<br><br>
+
+## Single export
+- If needed you can export your interface along with other javascript exports
+
+a.ts
+```typescript
+export interface NewPairs {
+   address: string,
+   created: Date
+}
+
+const obj = {
+    test: true
+}
+
+export { obj }
+```
+
+b.ts
+```typescript
+import { NewPairs } from 'test/a'
+let FIXT_NewPairs: NewPairs
+```
 
 
 <br><br>
