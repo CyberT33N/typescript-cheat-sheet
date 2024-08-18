@@ -250,7 +250,33 @@ const d = {
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
 
+# import/export
+
+<br><br>
+<br><br>
+
+## Single file
+
+a.ts
+```typescript
+export interface NewPairs {
+   address: string,
+   created: Date
+}
+```
+
+b.ts
+```typescript
+import { NewPairs } from 'test/a'
+let FIXT_NewPairs: NewPairs
+```
 
 
 
