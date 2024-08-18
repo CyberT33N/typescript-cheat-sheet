@@ -439,6 +439,9 @@ b.ts
 ```typescript
 import { NewPairs } from 'test/a'
 let FIXT_NewPairs: NewPairs
+
+# You can also rename it by using
+import { NewPairs as NewPairsInterface } from 'test/a'
 ```
 
 
@@ -468,6 +471,9 @@ b.ts
 ```typescript
 import { NewPairs } from 'test/a'
 let FIXT_NewPairs: NewPairs
+
+# You can also rename it by using
+import { NewPairs as NewPairsInterface } from 'test/a'
 ```
 
 
