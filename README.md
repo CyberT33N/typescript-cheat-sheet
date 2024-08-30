@@ -12,20 +12,34 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
-<br />
-<br />
-
+<br><br>
+<br><br>
 ____________________________________________________________
 ____________________________________________________________
 
-<br />
-<br />
+<br><br>
+<br><br>
 
 # tsconfig.json (https://www.typescriptlang.org/tsconfig/)
 
+<br><br>
+
 ## Basic Options
 
-#### target (https://www.typescriptlang.org/tsconfig#target)
+<br><br>
+
+### allowImportingTsExtensions (https://www.typescriptlang.org/tsconfig/#allowImportingTsExtensions)
+--allowImportingTsExtensions allows TypeScript files to import each other with a TypeScript-specific extension like .ts, .mts, or .tsx.
+
+This flag is only allowed when --noEmit or --emitDeclarationOnly is enabled, since these import paths would not be resolvable at runtime in JavaScript output files. The expectation here is that your resolver (e.g. your bundler, a runtime, or some other tool) is going to make these imports between .ts files work.
+
+```
+"allowImportingTsExtensions": true,
+```
+
+<br><br>
+
+### target (https://www.typescriptlang.org/tsconfig#target)
 ```javascript
 // Default: ES3
 // Allowed: ES3 (default), ES5, ES6/ES2015 (synonymous), ES7/ES2016, ES2017, ES2018, ES2019, ES2020, ESNext
@@ -33,14 +47,14 @@ ____________________________________________________________
 ```
 
 
-#### lib (https://www.typescriptlang.org/tsconfig#lib)
+### lib (https://www.typescriptlang.org/tsconfig#lib)
 ```javascript
 // For default lib is disabled and all library components are allowed. If you enabled it then you must specify which exactly you want to allow.
 {   "compilerOptions": {"lib": ['dom', 'es6', 'dom.iterable', 'scripthost']}   }
 ```
 
 
-#### sourceMap (https://www.typescriptlang.org/tsconfig#sourceMap)
+### sourceMap (https://www.typescriptlang.org/tsconfig#sourceMap)
 ```javascript
 // Enables the generation of sourcemap files. These files allow debuggers and other tools to display the original TypeScript source code when actually working with the emitted JavaScript files.
 {   "compilerOptions": {"sourceMap": true}   }
