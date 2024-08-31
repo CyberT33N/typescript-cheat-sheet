@@ -7,6 +7,10 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -49,9 +53,7 @@ tsconfig.json
       "module": "ESNext",
       "baseUrl": ".",
       "paths": {
-        "@/*": [
-          "./*"
-        ]
+        "@/*": ["."]
       }
     }
   }
