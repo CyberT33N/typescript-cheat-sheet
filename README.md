@@ -19,12 +19,105 @@ ____________________________________________________________
 <br><br>
 <br><br>
 
-# ts-node
+# Transpiler
+
+
+## tsx
+
 
 <br><br>
 <br><br>
 
-## Top level await
+## Top level await example
+
+package.json
+```javascript
+{
+    "type": "module",
+    "scripts": {
+       "bootstrap": "tsx src/bootstrap.ts"
+     }
+}
+```
+
+<br><br>
+
+tsconfig.json
+```javascript
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2022"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
+
+
+
+
+
+## ts-node
+- It is more recommended to use tsx
+
+<br><br>
+<br><br>
+
+## Top level await example
 
 package.json
 ```javascript
@@ -45,18 +138,59 @@ tsconfig.json
     "esm": true,
     // Do not forget to `npm i -D tsconfig-paths`
     "require": ["tsconfig-paths/register"],
-
     // these options are overrides used only by ts-node
     // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
     "compilerOptions": {
-      "target": "ESNext",
-      "module": "ESNext",
+      "target": "ES2022",
+      "module": "NodeNext",
       "baseUrl": ".",
       "paths": {
         "@/*": ["."]
       }
     }
-  }
+  },
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2022"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
 ```
 
