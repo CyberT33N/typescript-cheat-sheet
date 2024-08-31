@@ -7,6 +7,72 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+
+<br><br>
+<br><br>
+
+# ts-node
+
+<br><br>
+<br><br>
+
+## Top level await
+
+package.json
+```javascript
+{
+      "type": "module",
+       "scripts": {
+          "bootstrap": "node --loader ts-node/esm src/bootstrap.ts"
+        },
+}
+```
+
+<br><br>
+
+tsconfig.json
+```javascript
+{
+  "ts-node": {
+    "esm": true,
+    // Do not forget to `npm i -D tsconfig-paths`
+    "require": ["tsconfig-paths/register"],
+
+    // these options are overrides used only by ts-node
+    // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "ESNext",
+      "baseUrl": ".",
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      }
+    }
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
