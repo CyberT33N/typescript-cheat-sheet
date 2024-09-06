@@ -8,6 +8,100 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+# Dependencies
+
+
+
+## axios
+- https://github.com/CyberT33N/axios-cheat-sheet/blob/main/README.md#typescript
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
+## Mongoose
+- https://github.com/CyberT33N/mongoose-cheat-sheet/blob/main/README.md#typescript
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
+## MongoDB
+
+<br><br>
+<br><br>
+
+### Db
+```typescript
+import { MongoClient, Db, Collection } from 'mongodb
+
+class MongoUtils {
+    // eslint-disable-next-line no-use-before-define
+    private static instance: MongoUtils
+
+    private connectionString: string
+    private mongoClient: MongoClient
+
+    private dbConn: Db | null
+    private collectionConn: Collection | null
+
+
+    private constructor() {
+        this.dbConn = null
+        this.collectionConn = null
+
+        this.connectionString = process.env.MONGODB_CONNECTION_STRING
+        this.mongoClient = new MongoClient(this.connectionString)
+    }
+
+    private async getDbConnection() {
+        try {
+            const client = await this.mongoClient.connect()
+            this.dbConn = client.db(process.env.DB)
+        } catch (e) {
+            throw new BaseError('Error while try to get MongoDB Connection', e)
+        }
+    }
+
+   private async getCollectionConn(collectionName: string) {
+        const dbConn = await this.getConnection()
+
+        const collectionConn = dbConn.collection(collectionName)
+        return collectionConn
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -392,6 +486,12 @@ function app(num){
 
 
 
+
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -617,6 +717,43 @@ const d = {
 
 
 
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+# Error
+
+## Try Catch
+```
+import axios, { AxiosError } from 'axios'
+
+try {
+    await axios.get(`${BASE_URL}/base-error?error=true`)
+    throw new Error('Base Error Test - This should not be called')
+} catch (e: unknown) {
+    const { response } = e as AxiosError
+    expect(response?.status).to.equal(500)
+
+    expect(response?.data).to.include({
+        title: errorTitle,
+        environment: process.env.npm_lifecycle_event,
+        name: 'BaseError',
+        error: `Error: ${errorMessage}`
+    })
+}
+```
 
 
 
@@ -947,98 +1084,6 @@ import ErrorManager from 'ErrorManager'
 
 
 
-<br><br>
-<br><br>
-____________________________________________________________
-____________________________________________________________
-<br><br>
-<br><br>
-
-# Dependencies
-
-
-
-
-
-
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-
-
-## Mongoose
-- https://github.com/CyberT33N/mongoose-cheat-sheet/blob/main/README.md#typescript
-
-
-
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-
-
-## MongoDB
-
-<br><br>
-<br><br>
-
-### Db
-```typescript
-import { MongoClient, Db, Collection } from 'mongodb
-
-class MongoUtils {
-    // eslint-disable-next-line no-use-before-define
-    private static instance: MongoUtils
-
-    private connectionString: string
-    private mongoClient: MongoClient
-
-    private dbConn: Db | null
-    private collectionConn: Collection | null
-
-
-    private constructor() {
-        this.dbConn = null
-        this.collectionConn = null
-
-        this.connectionString = process.env.MONGODB_CONNECTION_STRING
-        this.mongoClient = new MongoClient(this.connectionString)
-    }
-
-    private async getDbConnection() {
-        try {
-            const client = await this.mongoClient.connect()
-            this.dbConn = client.db(process.env.DB)
-        } catch (e) {
-            throw new BaseError('Error while try to get MongoDB Connection', e)
-        }
-    }
-
-   private async getCollectionConn(collectionName: string) {
-        const dbConn = await this.getConnection()
-
-        const collectionConn = dbConn.collection(collectionName)
-        return collectionConn
-    }
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1178,12 +1223,12 @@ combine('Apple', 2);
 
 
 
-<br>
-<br>
+<br><br>
+<br><br>
 ____________________________________________________________
 ____________________________________________________________
-<br>
-<br>
+<br><br>
+<br><br>
 
 # process.env
 - https://stackoverflow.com/questions/45194598/using-process-env-in-typescript
@@ -1260,14 +1305,13 @@ interface Window {
 
 
 
-<br />
-<br />
+<br><br>
+<br><br>
 
 ____________________________________________________________
 ____________________________________________________________
 
-<br />
-<br />
+<br><br>
 
 # Type Aliases
 ```javascript
@@ -1308,14 +1352,14 @@ export default function ProductsId({ params }: Props) {
 
 
 
-<br />
-<br />
+<br><br>
+<br><br>
 
 ____________________________________________________________
 ____________________________________________________________
 
-<br />
-<br />
+<br><br>
+<br><br>
 
 # Function return types and voids
 ```javascript
@@ -1332,14 +1376,18 @@ function combine(a: 'Apple' | 'Fish', b: number): void{
 combine('Apple', 2);
 ```
 
-<br />
-<br />
+
+
+
+
+<br><br>
+<br><br>
 
 ____________________________________________________________
 ____________________________________________________________
 
-<br />
-<br />
+<br><br>
+<br><br>
 
 # Function Types
 
@@ -1367,14 +1415,19 @@ doHomework(21, () = >{
 ```
 
 
-<br />
-<br />
+
+
+
+
+
+<br><br>
+<br><br>
 
 ____________________________________________________________
 ____________________________________________________________
 
-<br />
-<br />
+<br><br>
+<br><br>
 
 # Compiling
 
