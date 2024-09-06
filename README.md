@@ -55,6 +55,7 @@ tsconfig.json
       "es2022"
     ],
     "allowJs": true,
+   "useUnknownInCatchVariables": true,
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "strict": true,
