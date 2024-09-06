@@ -766,6 +766,75 @@ try {
 
 
 
+
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+
+# Class
+
+
+## Implements Class with Interface
+```typescript
+interface BaseErrorInterface {
+    name: string
+    title: string
+    e?: Error | null
+    httpStatus: number
+}
+
+
+class BaseError extends Error implements BaseErrorInterface {
+    title
+    e
+    httpStatus
+
+    constructor(title: string, e?: Error) {
+        super(title)
+
+        this.name = 'BaseError'
+        this.title = title
+
+        if (e) {
+            this.e = e
+        }
+
+        this.httpStatus = 500
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
