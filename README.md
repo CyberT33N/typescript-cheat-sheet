@@ -852,6 +852,17 @@ ____________________________________________________________
 
 # import/export
 
+
+
+<br><br>
+<br><br>
+
+## Re-export
+```typescript
+export { BaseErrorInterface } from './BaseError'
+```
+
+
 <br><br>
 <br><br>
 
@@ -881,7 +892,7 @@ import { NewPairs as NewPairsInterface } from 'test/a'
 <br><br>
 <br><br>
 
-## Single export
+## Multiple export
 - If needed you can export your interface along with other javascript exports
 
 a.ts
