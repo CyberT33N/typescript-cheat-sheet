@@ -941,6 +941,34 @@ ____________________________________________________________
 # Classes
 - https://www.typescriptlang.org/docs/handbook/2/classes.html#handbook-content
 ```typescript
+export interface BaseErrorInterface {
+     readonly name: string
+     readonly httpStatus: number
+     title: string
+     e?: Error | null
+}
+
+/**
+ * Base Error - Default HTTP Status 500
+ */
+class BaseError extends Error implements BaseErrorInterface {
+    readonly httpStatus: number = 500
+ 
+    constructor(
+        public title: string,
+        public e?: Error
+    ) {
+        super(title)
+ 
+        this.name = 'BaseError'
+        this.httpStatus = 500
+
+        this.title = title
+        this.e = e
+    }
+}
+
+export default BaseError
 ```
 
 
