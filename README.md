@@ -611,7 +611,7 @@ ____________________________________________________________
 <br><br>
 
 # Types
-
+<details><summary>Click to expand..</summary>
 
 
 
@@ -630,8 +630,8 @@ ____________________________________________________________
 
 ## Basic Types
 - https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
-- 
-<details><summary>Click to expand..</summary>
+  
+
     
 <br><br>
 
@@ -877,6 +877,8 @@ fn()
 
 
 
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -923,6 +925,10 @@ try {
 
 
 
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -932,38 +938,71 @@ ____________________________________________________________
 
 
 
-# Class
-
-
-## Implements Class with Interface
+# Classes
+- https://www.typescriptlang.org/docs/handbook/2/classes.html#handbook-content
 ```typescript
-interface BaseErrorInterface {
-    name: string
-    title: string
-    e?: Error | null
-    httpStatus: number
+```
+
+
+<br><br>
+
+## Heritage
+```typescript
+interface Pingable {
+  ping(): void;
 }
+ 
+class Sonar implements Pingable {
+  ping() {
+    console.log("ping!");
+  }
+}
+ 
+```
 
 
-class BaseError extends Error implements BaseErrorInterface {
-    title
-    e
-    httpStatus
 
-    constructor(title: string, e?: Error) {
-        super(title)
+<br><br>
+<br><br>
 
-        this.name = 'BaseError'
-        this.title = title
-
-        if (e) {
-            this.e = e
-        }
-
-        this.httpStatus = 500
+# Getters & Setters
+```typescript
+class Thing {
+  _size = 0;
+ 
+  get size(): number {
+    return this._size;
+  }
+ 
+  set size(value: string | number | boolean) {
+    let num = Number(value);
+ 
+    // Don't allow NaN, Infinity, etc
+ 
+    if (!Number.isFinite(num)) {
+      this._size = 0;
+      return;
     }
+ 
+    this._size = num;
+  }
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
