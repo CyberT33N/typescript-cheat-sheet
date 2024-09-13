@@ -8,6 +8,68 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+# Convert plain js project to typescript
+1. npm i -g typescript
+
+2. tsc --init or create tsconfig.json by yourself:
+```
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "outDir": "dist"
+  },
+  "include": [
+    "scripts/**/*"
+  ]
+}
+```
+- https://learn.microsoft.com/de-de/visualstudio/javascript/compile-typescript-code-npm?view=vs-2022
+
+3. Rename .js files to .ts
+
+4. Add to package.json:
+```typescript
+"scripts": {
+  "build": "tsc --build",
+  "clean": "tsc --build --clean"
+},
+```
+
+5. Run npm run build to veriy that everythin can compile
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -23,27 +85,16 @@ ____________________________________________________________
 
 <br><br>
 <br><br>
-<br><br>
-<br><br>
-
 
 ## axios
 - https://github.com/CyberT33N/axios-cheat-sheet/blob/main/README.md#typescript
 
-
 <br><br>
 <br><br>
-<br><br>
-<br><br>
-
 
 ## Mongoose
 - https://github.com/CyberT33N/mongoose-cheat-sheet/blob/main/README.md#typescript
 
-
-
-<br><br>
-<br><br>
 <br><br>
 <br><br>
 
@@ -113,6 +164,10 @@ class MongoUtils {
 
 
 
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -122,7 +177,7 @@ ____________________________________________________________
 <br><br>
 
 # Transpiler
-
+<details><summary>Click to expand..</summary>
 
 ## tsx
 
@@ -133,7 +188,7 @@ ____________________________________________________________
 ## Top level await example
 
 package.json
-```javascript
+```typescript
 {
     "type": "module",
     "scripts": {
@@ -145,7 +200,7 @@ package.json
 <br><br>
 
 tsconfig.json
-```javascript
+```typescript
 {
   "compilerOptions": {
     "target": "ES2021",
@@ -223,7 +278,7 @@ tsconfig.json
 ## Top level await example
 
 package.json
-```javascript
+```typescript
 {
       "type": "module",
        "scripts": {
@@ -235,7 +290,7 @@ package.json
 <br><br>
 
 tsconfig.json
-```javascript
+```typescript
 {
   "ts-node": {
     "esm": true,
@@ -302,6 +357,17 @@ tsconfig.json
 
 
 
+</details>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -326,7 +392,8 @@ ____________________________________________________________
 <br><br>
 
 # tsconfig.json (https://www.typescriptlang.org/tsconfig/)
-
+<details><summary>Click to expand..</summary>
+    
 <br><br>
 
 ## Basic Options
@@ -345,7 +412,7 @@ This flag is only allowed when --noEmit or --emitDeclarationOnly is enabled, sin
 <br><br>
 
 ### target (https://www.typescriptlang.org/tsconfig#target)
-```javascript
+```typescript
 // Default: ES3
 // Allowed: ES3 (default), ES5, ES6/ES2015 (synonymous), ES7/ES2016, ES2017, ES2018, ES2019, ES2020, ESNext
 {   "compilerOptions": {"target": "es6"}   }
@@ -353,14 +420,14 @@ This flag is only allowed when --noEmit or --emitDeclarationOnly is enabled, sin
 
 
 ### lib (https://www.typescriptlang.org/tsconfig#lib)
-```javascript
+```typescript
 // For default lib is disabled and all library components are allowed. If you enabled it then you must specify which exactly you want to allow.
 {   "compilerOptions": {"lib": ['dom', 'es6', 'dom.iterable', 'scripthost']}   }
 ```
 
 
 ### sourceMap (https://www.typescriptlang.org/tsconfig#sourceMap)
-```javascript
+```typescript
 // Enables the generation of sourcemap files. These files allow debuggers and other tools to display the original TypeScript source code when actually working with the emitted JavaScript files.
 {   "compilerOptions": {"sourceMap": true}   }
 ```
@@ -370,14 +437,14 @@ This flag is only allowed when --noEmit or --emitDeclarationOnly is enabled, sin
 <br />
 
 #### outDir (https://www.typescriptlang.org/tsconfig#outDir)
-```javascript
+```typescript
 // Define the output folder of the compiled files - Notice here that folder structure will also be copied not only the files you will compile.
 {   "compilerOptions": {"outDir": "./dist"}   }
 ```
 
 
 #### rootDir (https://www.typescriptlang.org/tsconfig#rootDir)
-```javascript
+```typescript
 // Define the input folder of the compiled files. Basicly the same like include
 {   "compilerOptions": {"outDir": "./src"}   }
 ```
@@ -388,7 +455,7 @@ This flag is only allowed when --noEmit or --emitDeclarationOnly is enabled, sin
 
 
 #### removeComments (https://www.typescriptlang.org/tsconfig#removeComments)
-```javascript
+```typescript
 // Remove Comments like as example this text here..
 {   "compilerOptions": {"removeComments": true}   }
 ```
@@ -397,13 +464,13 @@ This flag is only allowed when --noEmit or --emitDeclarationOnly is enabled, sin
 <br />
 
 #### noEmit (https://www.typescriptlang.org/tsconfig#noEmit)
-```javascript
+```typescript
 // Compile will not create any .js file when noEmit is true. This is usefully when you just want to check the project for errors but do not directly want to convert your .ts files to .js
 {   "compilerOptions": {"noEmit": true}   }
 ```
 
 #### noEmitOnError (https://www.typescriptlang.org/tsconfig#noEmitOnError)
-```javascript
+```typescript
 /*Do not emit compiler output files like JavaScript source code, source-maps or declarations if any errors were reported.
 
 This defaults to false, making it easier to work with TypeScript in a watch-like environment where you may want to see results of changes to your code in another environment before making sure all errors are resolved.*/
@@ -411,7 +478,7 @@ This defaults to false, making it easier to work with TypeScript in a watch-like
 ```
 
 #### downlevelIteration (https://www.typescriptlang.org/tsconfig#downlevelIteration)
-```javascript
+```typescript
 // Downleveling is TypeScript’s term for transpiling to an older version of JavaScript. This flag is to enable support for a more accurate implementation of how modern JavaScript iterates through new concepts in older JavaScript runtimes.
 {   "downlevelIteration": true   }
 ```
@@ -425,7 +492,7 @@ This defaults to false, making it easier to work with TypeScript in a watch-like
 Exclude will blacklist folder/files from compiling process. Include instead will whitelist them.
 <br /><br />
 However, notice here that once you use the include element only specified files/folder will get compiled and everything else you did not include there will be not compiled.
-```javascript
+```typescript
 // node_modules folder should be already ignored for default
 
 {
@@ -450,19 +517,19 @@ However, notice here that once you use the include element only specified files/
 ## Additional Checks
 
 #### noUnusedLocals (https://www.typescriptlang.org/tsconfig#noUnusedLocals)
-```javascript
+```typescript
 // check if variables are unused
 {   "noUnusedLocals": true   }
 ```
 
 #### noUnusedParameters (https://www.typescriptlang.org/tsconfig#noUnusedParameters)
-```javascript
+```typescript
 // check if Parameters are unused
 {   "noUnusedParameters": true   }
 ```
 
 #### noImplicitReturns (https://www.typescriptlang.org/tsconfig#noImplicitReturns)
-```javascript
+```typescript
 // check if functions always return something
 // {   "noImplicitReturns": true   }
 function app(num){
@@ -476,6 +543,7 @@ function app(num){
 <br><br>
 
 
+</details>
 
 
 
@@ -500,45 +568,10 @@ function app(num){
 
 
 
-<br><br>
-<br><br>
-____________________________________________________________
-____________________________________________________________
-<br><br>
-<br><br>
 
-# Convert plain js project to typescript
-1. npm i -g typescript
 
-2. tsc --init or create tsconfig.json by yourself:
-```
-{
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "target": "es5",
-    "outDir": "dist"
-  },
-  "include": [
-    "scripts/**/*"
-  ]
-}
-```
-- https://learn.microsoft.com/de-de/visualstudio/javascript/compile-typescript-code-npm?view=vs-2022
 
-3. Rename .js files to .ts
 
-4. Add to package.json:
-```javascript
-"scripts": {
-  "build": "tsc --build",
-  "clean": "tsc --build --clean"
-},
-```
-
-5. Run npm run build to veriy that everythin can compile
 
 
 
@@ -577,42 +610,61 @@ ____________________________________________________________
 <br><br>
 <br><br>
 
-# Core Types
+# Types
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+
+## Basic Types
+- https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+- 
+<details><summary>Click to expand..</summary>
+    
 <br><br>
 
 ## Number
-```javascript
+```typescript
 const d: number = 3;
 ```
 
 <br><br>
 
 ## String
-```javascript
+```typescript
 const d: string = 'house';
 ```
 
 <br><br>
 
 ## Boolean
-```javascript
+```typescript
 const d: boolean = true;
 ```
 
 <br><br>
 
 ## undefined
-```javascript
+```typescript
 const d: undefined = undefined;
 ```
-
-
 
 <br><br>
 
 ## Any
-```javascript
+```typescript
 // verify if d is any core type (any has no restriction in TS compared to unknown)
 const d: any = 'apple';
 ```
@@ -620,7 +672,7 @@ const d: any = 'apple';
 <br><br>
 
 ## unknown
-```javascript
+```typescript
 // https://youtu.be/BwuLxPH8IDs?t=7883
 let userInput: unknown;
 let userName: string;
@@ -636,12 +688,10 @@ userInput = 3;
 userName = userInput
 ```
 
-
 <br><br>
 
-
 ## never
-```javascript
+```typescript
 function errorMessage(msg: string, code: number): never {
   throw {msg: msg, code: code};
 }
@@ -650,11 +700,10 @@ errorMessage('no ram', 23);
 console.log( 'This log will NEVER come cause errorMessage will throw error and stop the script' );
 ```
 
-
 <br><br>
 
 ## function
-```javascript
+```typescript
 function app(){ /*..*/ };
 
 // verify if d is function - method #1
@@ -667,7 +716,7 @@ const d: () = app;
 <br><br>
 
 ## Object
-```javascript
+```typescript
 // verify if d is object - method #1
 const d: {} = {};
 
@@ -684,7 +733,7 @@ const d: {age: number, name: string} = {
 <br><br>
 
 ## Array
-```javascript
+```typescript
 // verify if d is array - method #1
 const d: [] = [];
 
@@ -698,23 +747,117 @@ const d: string[] = ['a', 'b'];
 <br><br>
 
 ## Tuple
-```javascript
+```typescript
 // verify that array only contains specific core type and contains max. 2 elements.
 const d: [number, string] = [1, 'b'];
 ```
 
 <br><br>
 
+## Union
+- https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html
+```typescript
+function padLeft(value: string, padding: string | number) {
+  // ...
+}
+```
+
+
+<br><br>
+
 ## Enum
-```javascript
+```typescript
 // create const in TS that are later get converted to vanilla JS
-enum Role {ADMIN = 'cyberjoe', ACCESSCODE = 512, DENYSTATE = false}
+enum Role {
+    ADMIN = 'cyberjoe', ACCESSCODE = 512, DENYSTATE = false
+}
+
 const d = {
   age: 10,
   name: 'Julian',
   role: Role.ADMIN
 };
 ```
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
+# Utility Types
+- https://www.typescriptlang.org/docs/handbook/utility-types.html
+
+<br><br>
+
+## readonly
+- https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype
+```typesccript
+interface Todo {
+  title: string;
+}
+ 
+const todo: Readonly<Todo> = {
+  title: "Delete inactive users",
+};
+ 
+```
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+## Return Types
+
+<br><br>
+
+### void
+```typescript
+const fn = (): void => {
+    console.log('test..')
+}
+
+fn()
+```
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1190,7 +1333,7 @@ ____________________________________________________________
 # Postfix
 
 ## ! (Tell typescript that unknown element will exist in the future)
-```javascript
+```typescript
 const button = document.querySelector('#header')!;
 ```
 
@@ -1247,7 +1390,7 @@ ____________________________________________________________
 # Check
 
 # Union Types
-```javascript
+```typescript
 // Check if element has multiple core types
 function combine(a: number | string, b: number){ /*..*/ }
 combine('Apple', 2);
@@ -1287,7 +1430,7 @@ ____________________________________________________________
 <br><br>
 
 # Literal Types
-```javascript
+```typescript
 // Check if element has specific value
 function combine(a: 'Apple' | 'Fish', b: number){ /*..*/ }
 combine('Apple', 2);
@@ -1326,7 +1469,7 @@ npm i --save-dev @types/node
 ```
   
 - Create at your root environment.d.ts
-```javascript
+```typescript
 export declare global {
     namespace NodeJS {
         interface ProcessEnv {
@@ -1402,7 +1545,7 @@ ____________________________________________________________
 <br><br>
 
 # Type Aliases
-```javascript
+```typescript
 // create const of specific uniony types
 type adminRights = number | 'FOUND'
 const d: adminRights = 'FOUND';
@@ -1450,7 +1593,7 @@ ____________________________________________________________
 <br><br>
 
 # Function return types and voids
-```javascript
+```typescript
 // check if returned value is specific core type
 function combine(a: 'Apple' | 'Fish', b: number): boolean{
   if( b === 1 ) return true;
@@ -1480,19 +1623,19 @@ ____________________________________________________________
 # Function Types
 
 ## Check if element is function with no parameter and check the core type of the return
-```javascript
+```typescript
 function app(){ return 13 };
 const d: () => number = app;
 ```
 
 ## Check if element is function with two parameter
-```javascript
+```typescript
 function app(name, age){ /*.. no return here .. Thats why we use void in this case!*/ };
 const d: (a: number, b: boolean) => void = app;
 ```
 
 ## Callbacks
-```javascript
+```typescript
 function doHomework(age: number, callback: (a:number) => void) {
   callback(++age);
 }
