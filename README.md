@@ -941,35 +941,41 @@ ____________________________________________________________
 # Classes
 - https://www.typescriptlang.org/docs/handbook/2/classes.html#handbook-content
 ```typescript
+// ==== INTERFACES ====
 export interface BaseErrorInterface {
-     readonly name: string
-     readonly httpStatus: number
-     title: string
-     e?: Error | null
+     name: string
+     httpStatus: number
+     readonly title: string
+     readonly e?: Error | null
 }
 
 /**
  * Base Error - Default HTTP Status 500
  */
 class BaseError extends Error implements BaseErrorInterface {
-    readonly httpStatus: number = 500
- 
+    httpStatus: number
+
     constructor(
-        public title: string,
-        public e?: Error
+        readonly title: string,
+        readonly e?: Error | null
     ) {
         super(title)
  
         this.name = 'BaseError'
         this.httpStatus = 500
-
-        this.title = title
-        this.e = e
     }
 }
 
 export default BaseError
 ```
+- When you define e.g. `public title: string` in your constructor argument it will be synthetic sugar and will do the same as:
+  ```typescript
+    constructor(
+        title: string,
+    ) {
+        this.title = title
+    }
+  ```
 
 
 <br><br>
