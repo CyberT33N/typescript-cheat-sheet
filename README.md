@@ -1353,6 +1353,46 @@ ____________________________________________________________
 <br><br>
 <br><br>
 
+# Generis
+- https://www.typescriptlang.org/docs/handbook/2/generics.html#handbook-content
+```typescript
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
+```
+- Will use the argument type and set it aswell as return type. `<Type>` will lock the type and then re-use it that the function is not allowed to work with other types
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
 # Comments
 
 <br><br>
