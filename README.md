@@ -764,6 +764,7 @@ function padLeft(value: string, padding: string | number) {
 
 
 <br><br>
+<br><br>
 
 ## Enum
 ```typescript
@@ -777,6 +778,17 @@ const d = {
   name: 'Julian',
   role: Role.ADMIN
 };
+```
+
+<br><br>
+
+## Enum with objects
+```typescript
+export const PizzaSize = {
+    small: { value: 'small', key: 0, size: 25 },
+    medium: { value: 'medium', key: 1, size: 35 },
+    large: { value: 'large', key: 2, size: 50 },
+} as const
 ```
 
 
