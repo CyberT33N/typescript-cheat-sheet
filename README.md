@@ -1094,6 +1094,12 @@ export type { BaseErrorInterface } from './BaseError'
 
 ```
 
+### Re-export and usage in same file
+```typescript
+import type { BaseErrorInterface } from './BaseError.d'
+export type { BaseErrorInterface }
+```
+
 
 <br><br>
 <br><br>
