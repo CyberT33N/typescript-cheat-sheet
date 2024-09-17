@@ -1088,6 +1088,10 @@ ____________________________________________________________
 ## Re-export
 ```typescript
 export { BaseErrorInterface } from './BaseError'
+
+# or
+export type { BaseErrorInterface } from './BaseError'
+
 ```
 
 
