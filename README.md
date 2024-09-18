@@ -1262,6 +1262,49 @@ const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
 
 
 
+<br><br>
+<br><br>
+
+
+## Use single property of interface
+```typescript
+interface ErrorDataInterface extends BaseErrorInterface {
+    data?: object
+}
+
+const test: ErrorDataInterface['data'] = { test: true };
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
