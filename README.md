@@ -1382,8 +1382,9 @@ const test: ErrorDataInterface['data'] = { test: true };
 <br><br>
 
 
-## Ovwrwrite property in interface
+## Overwrite specific property in interface
 - https://stackoverflow.com/questions/49198713/override-the-properties-of-an-interface-in-typescript
+- Omit only works with 1 property
 ```typescript
 // original interface
 interface A {
