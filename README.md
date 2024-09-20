@@ -1384,20 +1384,21 @@ const test: ErrorDataInterface['data'] = { test: true };
 
 ## Overwrite specific property in interface
 - https://stackoverflow.com/questions/49198713/override-the-properties-of-an-interface-in-typescript
-- Omit only works with 1 property
 ```typescript
 // original interface
 interface A {
   a: number;
   b: number; // we want string type instead of number
+  c: number;
 }
 
 // Remove 'b'
-type BTemp = Omit<A, 'b'>;
+type BTemp = Omit<A, 'b' | 'c'>;
 
 // extends A (BTemp) and redefine b
 interface B extends BTemp {
   b: string;
+  c: boolean;
 }
 
 const a: B = {
