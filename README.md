@@ -1725,6 +1725,34 @@ export declare global {
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+# d.ts files
+- Only for type declaration
+- Exported typed are global available in your project
+- **In normales cases you write your type definitions in your .ts files. In most cases d.ts files are only used to provide types for the libraries that dont have typescript support or are automatically genered and shipped with the library to provide the typescript support to it**
+   - E.g. `tsc example.ts --decleration`
+   - This means you can declare your types in your .ts files and then when transpile it the d.ts files will be generated 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
