@@ -1346,7 +1346,7 @@ const user: User = {
 <br><br>
 
 
-## Extending an Interface
+## Extend Interface
 ```typescript
 interface Animal {
   name: string;
@@ -1377,6 +1377,33 @@ const test: ErrorDataInterface['data'] = { test: true };
 
 
 
+
+<br><br>
+<br><br>
+
+
+## Ovwrwrite property in interface
+- https://stackoverflow.com/questions/49198713/override-the-properties-of-an-interface-in-typescript
+```typescript
+// original interface
+interface A {
+  a: number;
+  b: number; // we want string type instead of number
+}
+
+// Remove 'b'
+type BTemp = Omit<A, 'b'>;
+
+// extends A (BTemp) and redefine b
+interface B extends BTemp {
+  b: string;
+}
+
+const a: B = {
+  a: 5,
+  b: 'B'
+}
+```
 
 
 
