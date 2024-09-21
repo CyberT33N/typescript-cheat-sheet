@@ -901,6 +901,9 @@ ____________________________________________________________
 # Error
 
 ## Try Catch
+- In Typescript the catched error can only be any or unknown. Because you should never use any the only type you can use is `unknown`
+
+[METHOD #1] Define new error variable and cast interface
 ```
 import axios, { AxiosError } from 'axios'
 
@@ -920,6 +923,24 @@ try {
 }
 ```
 
+
+[METHOD #2] Check for instance
+```typescript
+import axios, {AxiosError} from "axios";
+
+try {
+  some request
+} catch(err) {
+ if (err instanceof AxiosError) {
+   console.log(error.response);
+   if(error.response?.data?.statusCode === 401) {
+     logout();
+   } 
+ } else {
+   // it was some other kind of error, handle it appropriately
+ } 
+
+```
 
 
 
