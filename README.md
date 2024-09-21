@@ -1207,10 +1207,15 @@ ____________________________________________________________
 
 ## Re-export
 ```typescript
-export { BaseErrorInterface } from './BaseError'
-
-# or
+# Method #1
 export type { BaseErrorInterface } from './BaseError'
+
+# Method #2
+export {
+    AnyOtherCLass
+    default as BaseError,
+    type BaseErrorInterface
+} from './BaseError'
 
 ```
 
