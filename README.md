@@ -810,6 +810,43 @@ export const PizzaSize = {
 # Utility Types
 - https://www.typescriptlang.org/docs/handbook/utility-types.html
 
+## Record
+- https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type
+- Constructs an object type whose property keys are Keys and whose property values are Type. This utility can be used to map the properties of a type to another type.
+```typescript
+type CatName = "miffy" | "boris" | "mordred";
+ 
+interface CatInfo {
+  age: number;
+  breed: string;
+}
+ 
+const cats: Record<CatName, CatInfo> = {
+  miffy: { age: 10, breed: "Persian" },
+  boris: { age: 5, breed: "Maine Coon" },
+  mordred: { age: 16, breed: "British Shorthair" },
+};
+ 
+cats.boris;
+```
+
+### Allows object with any nested typed
+- If you would use this interface then you could not use `const res: NestedData = test.data.nestedObject` because object does not allows nested properties:
+```typescript
+interface NestedData {
+  data: object;
+}
+```
+  - For thise case you must use Record
+  ```typescript
+  interface NestedData {
+    data: Record<string, any>;
+  }
+  ```
+
+
+
+<br><br>
 <br><br>
 
 ## readonly
