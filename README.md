@@ -9,6 +9,224 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+
+
+# Differences Between `interface` and `type`
+
+## Extensibility:
+
+- **Interfaces** can be extended using the `extends` keyword.
+- **Type aliases** can be extended using intersection types.
+
+## Declaration Merging:
+
+- **Interfaces** can merge declarations. If you define an interface with the same name multiple times, TypeScript will merge them into a single interface.
+- **Type aliases** do not support declaration merging.
+
+## Use Cases:
+
+- **Interfaces** are typically used to define the shape of objects and are often preferred when defining APIs and classes.
+- **Type aliases** are more versatile and can be used for complex type definitions, unions, and intersections.
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+
+
+
+# Interface
+- An interface is used to define a structure for an object. Interfaces can describe the properties and methods that an object should have. They are useful for defining contracts within your code and can be extended or implemented by classes.
+```typescript
+interface User {
+  name: string;
+  age: number;
+  greet(): string;
+}
+
+const user: User = {
+  name: "Alice",
+  age: 30,
+  greet() {
+    return `Hello, my name is ${this.name}`;
+  }
+};
+```
+
+
+<br><br>
+<br><br>
+
+
+## Merge Interfaces
+```typescript
+interface IFooBar extends IFoo, IBar {}
+```
+
+<br><br>
+<br><br>
+
+
+## Extend Interface
+```typescript
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+
+const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
+```
+
+
+
+<br><br>
+<br><br>
+
+
+## Use single property of interface
+```typescript
+interface ErrorDataInterface extends BaseErrorInterface {
+    data?: object
+}
+
+const test: ErrorDataInterface['data'] = { test: true };
+```
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+## Overwrite specific property in interface
+- https://stackoverflow.com/questions/49198713/override-the-properties-of-an-interface-in-typescript
+```typescript
+// original interface
+interface A {
+  a: number;
+  b: number; // we want string type instead of number
+  c: number;
+}
+
+// Remove 'b'
+type BTemp = Omit<A, 'b' | 'c'>;
+
+// extends A (BTemp) and redefine b
+interface B extends BTemp {
+  b: string;
+  c: boolean;
+}
+
+const a: B = {
+  a: 5,
+  b: 'B'
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+# Type
+```typescript
+type Point = {
+  x: number;
+  y: number;
+};
+
+type Response = string | number | boolean;
+
+const point: Point = { x: 10, y: 20 };
+const response: Response = "Success";
+```
+
+<br><br>
+<br><br<
+
+
+## Extending a Type Alia
+```typescript
+type Animal = {
+  name: string;
+};
+
+type Dog = Animal & {
+  breed: string;
+};
+
+const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1327,213 +1545,6 @@ import { NewPairs as NewPairsInterface } from 'test/a'
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-____________________________________________________________
-____________________________________________________________
-<br><br>
-<br><br>
-
-
-
-
-# Differences Between `interface` and `type`
-
-## Extensibility:
-
-- **Interfaces** can be extended using the `extends` keyword.
-- **Type aliases** can be extended using intersection types.
-
-## Declaration Merging:
-
-- **Interfaces** can merge declarations. If you define an interface with the same name multiple times, TypeScript will merge them into a single interface.
-- **Type aliases** do not support declaration merging.
-
-## Use Cases:
-
-- **Interfaces** are typically used to define the shape of objects and are often preferred when defining APIs and classes.
-- **Type aliases** are more versatile and can be used for complex type definitions, unions, and intersections.
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-
-
-
-
-
-# Interface
-- An interface is used to define a structure for an object. Interfaces can describe the properties and methods that an object should have. They are useful for defining contracts within your code and can be extended or implemented by classes.
-```typescript
-interface User {
-  name: string;
-  age: number;
-  greet(): string;
-}
-
-const user: User = {
-  name: "Alice",
-  age: 30,
-  greet() {
-    return `Hello, my name is ${this.name}`;
-  }
-};
-```
-
-
-
-<br><br>
-<br><br>
-
-
-## Extend Interface
-```typescript
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  breed: string;
-}
-
-const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
-```
-
-
-
-<br><br>
-<br><br>
-
-
-## Use single property of interface
-```typescript
-interface ErrorDataInterface extends BaseErrorInterface {
-    data?: object
-}
-
-const test: ErrorDataInterface['data'] = { test: true };
-```
-
-
-
-
-
-<br><br>
-<br><br>
-
-
-## Overwrite specific property in interface
-- https://stackoverflow.com/questions/49198713/override-the-properties-of-an-interface-in-typescript
-```typescript
-// original interface
-interface A {
-  a: number;
-  b: number; // we want string type instead of number
-  c: number;
-}
-
-// Remove 'b'
-type BTemp = Omit<A, 'b' | 'c'>;
-
-// extends A (BTemp) and redefine b
-interface B extends BTemp {
-  b: string;
-  c: boolean;
-}
-
-const a: B = {
-  a: 5,
-  b: 'B'
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-
-# Type
-```typescript
-type Point = {
-  x: number;
-  y: number;
-};
-
-type Response = string | number | boolean;
-
-const point: Point = { x: 10, y: 20 };
-const response: Response = "Success";
-```
-
-<br><br>
-<br><br<
-
-
-## Extending a Type Alia
-```typescript
-type Animal = {
-  name: string;
-};
-
-type Dog = Animal & {
-  breed: string;
-};
-
-const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
-```
 
 
 
