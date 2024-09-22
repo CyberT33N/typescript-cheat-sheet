@@ -1027,6 +1027,57 @@ export const PizzaSize = {
 
 # Utility Types
 - https://www.typescriptlang.org/docs/handbook/utility-types.html
+- 
+<br><br>
+<br><br>
+
+## Pick
+- https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+ 
+type TodoPreview = Pick<Todo, "title" | "completed">;
+ 
+const todo: TodoPreview = {
+  title: "Clean room",
+  completed: false,
+};
+```
+
+
+<br><br>
+<br><br>
+
+
+
+## Omit
+- https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+  createdAt: number;
+}
+ 
+type TodoPreview = Omit<Todo, "description">;
+ 
+const todo: TodoPreview = {
+  title: "Clean room",
+  completed: false,
+  createdAt: 1615544252770,
+};
+ 
+```
+
+
+<br><br>
+<br><br>
+
 
 ## Record
 - https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type
@@ -1079,6 +1130,33 @@ const todo: Readonly<Todo> = {
 };
  
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
