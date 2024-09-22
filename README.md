@@ -151,6 +151,18 @@ const a: B = {
 
 
 
+<br><br>
+<br><br>
+
+
+## Merge interfaces and pick conflicting properties
+- Sometimes you want to merge interfaces which have the same properties but with different values e.g. like default values
+```typescript
+export interface BaseErrorMiddlewareInterface extends Pick<BaseErrorInterface, 'httpStatus' | 'name'>,
+    Omit<ErrorResponseInterface, 'httpStatus' | 'name'> {}
+```
+
+
 
 
 
