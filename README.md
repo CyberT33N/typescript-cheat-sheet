@@ -1405,6 +1405,52 @@ let emp2: Person = emp.find('Steve');
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+
+# Functions
+
+<br><br>
+
+## Assign Interface to Arguments
+```typescript
+// Option #1
+function createPerson(person: Person) { /* ... */ }
+
+// Option #1
+function createPerson({name, age}: Person) { /* ... */ }
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br><br>
 <br><br>
@@ -2120,17 +2166,29 @@ ____________________________________________________________
 
 # Function Types
 
+<br><br>
+
 ## Check if element is function with no parameter and check the core type of the return
 ```typescript
-function app(){ return 13 };
+function app(){
+    return 13
+};
+
 const d: () => number = app;
 ```
 
+<br><br>
+
 ## Check if element is function with two parameter
 ```typescript
-function app(name, age){ /*.. no return here .. Thats why we use void in this case!*/ };
+function app(name, age){
+    /*.. no return here .. Thats why we use void in this case!*/
+};
+
 const d: (a: number, b: boolean) => void = app;
 ```
+
+<br><br>
 
 ## Callbacks
 ```typescript
@@ -2142,6 +2200,32 @@ doHomework(21, () = >{
   console.log('Function doHomework() was finished..');
 });
 ```
+
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
