@@ -1766,6 +1766,81 @@ function identity<Type>(arg: Type): Type {
 - Will use the argument type and set it aswell as return type. `<Type>` will lock the type and then re-use it that the function is not allowed to work with other types
 
 
+<br><br>
+<br><br>
+
+## Generic types
+```typescript
+type ApiResponse<T> = {
+  data: T
+  isError: boolean
+}
+
+type UserResponse = ApiResponse<{ name: string; age:number }>
+
+const response: UserResponse = {
+  data: {
+    name: 'dennis',
+    age: 12
+  },
+  isError: true
+}
+```
+
+
+
+<br><br>
+<br><br>
+
+## Setting default
+- If you define a default in your type then there is no need to define the argumentm in the generic.
+```typescript
+type ApiResponse<T = { name: 'default' }> = {
+  data: T
+  isError: boolean
+}
+
+const response: ApiResponse = {
+  data: {
+    name: 'dennis'
+  },
+  isError: true
+}
+```
+
+
+
+<br><br>
+<br><br>
+
+## Extend from specific type
+- Extending will say that the generic will be always from this type
+```typescript
+// You can also use default here if you want e<T extends object = { name: 'default' }>
+type ApiResponse<T extends object> = {
+  data: T
+  isError: boolean
+}
+
+type UserResponse = ApiResponse<{ name: string; age:number }>
+
+const response: UserResponse = {
+  data: {
+    name: 'dennis'
+  },
+  isError: true
+}
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
