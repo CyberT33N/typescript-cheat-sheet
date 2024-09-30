@@ -1710,7 +1710,7 @@ ____________________________________________________________
 <br><br>
 <br><br>
 
-# Generis
+# Generics
 - https://www.typescriptlang.org/docs/handbook/2/generics.html#handbook-content
 ```typescript
 function identity<Type>(arg: Type): Type {
