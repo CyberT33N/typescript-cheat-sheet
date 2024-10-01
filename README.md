@@ -115,55 +115,6 @@ const user: User = {
 
 
 
-<br><br>
-<br><br>
-
-
-## Dynamic generate Interface
-
-<br><br>
-
-
-### Auto generate type
-```typescript
-type MapSchemaTypes = {
-  string: string;
-  integer: number;
-  // others?
-}
-
-type MapSchema<T extends Record<string, keyof MapSchemaTypes>> = {
-  -readonly [K in keyof T]: MapSchemaTypes[T[K]]
-}
-
-const personSchema = { name: 'string', age: 'integer' } as const;
-type Person = MapSchema<typeof personSchema>;
-```
-
-<br><br>
-
-
-### Type is defined in object
-```typescript
-const schema = {
-    name: { 
-        type: String,
-        required: true,
-        unique: true,
-        index: true
-    },
-    decimals: { type: BigInt, required: true }
-}
-
-type MongooseSchemaInterface = {
-    [K in keyof typeof schema]: MongooseSchemaType<typeof schema[K]['type']>;
-};
-
-const test: MongooseSchemaInterface = {
-    name: 123 // <-- Will not work
-}
-```
-
 
 <br><br>
 <br><br>
@@ -281,6 +232,17 @@ export interface BaseErrorMiddlewareInterface extends Pick<BaseErrorInterface, '
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 <br><br>
@@ -299,8 +261,59 @@ const point: Point = { x: 10, y: 20 };
 const response: Response = "Success";
 ```
 
+
+
 <br><br>
-<br><br<
+<br><br>
+
+
+## Dynamic generate Type
+
+<br><br>
+
+
+### Auto generate type
+```typescript
+type MapSchemaTypes = {
+  string: string;
+  integer: number;
+  // others?
+}
+
+type MapSchema<T extends Record<string, keyof MapSchemaTypes>> = {
+  -readonly [K in keyof T]: MapSchemaTypes[T[K]]
+}
+
+const personSchema = { name: 'string', age: 'integer' } as const;
+type Person = MapSchema<typeof personSchema>;
+```
+
+<br><br>
+
+
+### Type is defined in object
+```typescript
+const schema = {
+    name: { 
+        type: String,
+        required: true,
+        unique: true,
+        index: true
+    },
+    decimals: { type: BigInt, required: true }
+}
+
+type MongooseSchemaInterface = {
+    [K in keyof typeof schema]: MongooseSchemaType<typeof schema[K]['type']>;
+};
+
+const test: MongooseSchemaInterface = {
+    name: 123 // <-- Will not work
+}
+```
+
+<br><br>
+<br><br>
 
 
 ## Extending a Type Alia
