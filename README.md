@@ -120,6 +120,30 @@ const user: User = {
 
 
 ## Dynamic generate Interface
+
+<br><br>
+
+
+### Auto generate type
+```typescript
+type MapSchemaTypes = {
+  string: string;
+  integer: number;
+  // others?
+}
+
+type MapSchema<T extends Record<string, keyof MapSchemaTypes>> = {
+  -readonly [K in keyof T]: MapSchemaTypes[T[K]]
+}
+
+const personSchema = { name: 'string', age: 'integer' } as const;
+type Person = MapSchema<typeof personSchema>;
+```
+
+<br><br>
+
+
+### Type is defined in object
 ```typescript
 const schema = {
     name: { 
