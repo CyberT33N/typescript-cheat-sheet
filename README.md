@@ -1960,7 +1960,11 @@ const response: ApiResponse = {
 <br><br>
 <br><br>
 
-## Extend from specific type
+## Extend
+
+<br><br>
+
+### Extend from specific type
 - Extending will say that the generic will be always from this type
 ```typescript
 // You can also use default here if you want e<T extends object = { name: 'default' }>
@@ -1983,6 +1987,15 @@ const response: UserResponse = {
 
 
 
+<br><br>
+
+### Extend with condition
+```typescript
+type Mover<T> = 
+  T extends Shoe ? ShoeMover : 
+  T extends Dress ? DressPacker : 
+  never; 
+```
 
 
 
