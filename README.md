@@ -1991,11 +1991,13 @@ const response: UserResponse = {
 
 ### Extend with condition
 ```typescript
-type Mover<T> = 
-  T extends Shoe ? ShoeMover : 
-  T extends Dress ? DressPacker : 
-  never; 
+type MongooseSchemaType<T> = 
+    T extends typeof String ? mongoose.Schema.Types.String :
+    T extends typeof Number ? mongoose.Schema.Types.Number :
+    T extends typeof Boolean ? mongoose.Schema.Types.Boolean :
+    never;
 ```
+- It will check if `T` is typeof something and extend from your given values or go to he next condition
 
 
 
