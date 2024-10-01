@@ -406,6 +406,29 @@ ____________________________________________________________
 <br><br>
 <br><br>
 
+# Compile
+
+<br><br>
+
+## Compile in Runtime
+```typescript
+// Kompiliere .ts Datei zur Laufzeit zu .js (CJS)
+const compiledPath = tsFilePath.replace(/\.ts$/, '.cjs')
+const compiledDir = path.dirname(compiledPath)
+console.log('Compiled path:', compiledPath)
+console.log('Compiled dir:', compiledDir)
+execSync(`tsup ${tsFilePath} --outDir ${compiledDir}`)
+```
+
+
+
+<br><br>
+<br><br>
+
+<br><br>
+<br><br>
+
+
 # Transpiler
 <details><summary>Click to expand..</summary>
 
