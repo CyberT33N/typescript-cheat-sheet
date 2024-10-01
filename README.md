@@ -984,10 +984,68 @@ ____________________________________________________________
 
 
 
+<br><br>
+<br><br>
+
+## Conditional Types
+- https://www.typescriptlang.org/docs/handbook/2/conditional-types.html
+```typescript
+interface Animal {
+  live(): void;
+}
+interface Dog extends Animal {
+  woof(): void;
+}
+ 
+type Example1 = Dog extends Animal ? number : string;
+        
+type Example1 = number
+ 
+type Example2 = RegExp extends Animal ? number : string;
+```
 
 
 
 
+
+<br><br>
+<br><br>
+
+## infer
+- Conditional types provide us with a way to infer from types we compare against in the true branch using the infer keyword. For example, we could have inferred the element type in Flatten instead of fetching it out “manually” with an indexed access type:
+```typescript
+# Example #1
+type Flatten<Type> = Type extends Array<infer Item> ? Item : Type;
+
+# Example #2
+type SchemaValue<T> = T extends { type: infer U } ? MongooseSchemaType<U> : MongooseSchemaType<T>;
+```
+- So basiclly we detect the type of a value and then re-use it inside of our extends conditon. **You can only use infer with extends**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
 <br><br>
 <br><br>
 
