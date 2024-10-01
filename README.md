@@ -9,6 +9,52 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+# Operator
+
+## typeof
+- https://www.typescriptlang.org/docs/handbook/2/typeof-types.html
+```typescript
+let s = "hello";
+let n: typeof s;
+```
+
+## keyof
+- https://www.typescriptlang.org/docs/handbook/2/keyof-types.html
+- The keyof operator takes an object type and produces a string or numeric literal union of its keys. The following type P is the same type as type P = "x" | "y":
+```typescript
+type Point = { x: number; y: number };
+type P = keyof Point;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -65,6 +111,33 @@ const user: User = {
     return `Hello, my name is ${this.name}`;
   }
 };
+```
+
+
+
+<br><br>
+<br><br>
+
+
+## Dynamic generate Interface
+```typescript
+const schema = {
+    name: { 
+        type: String,
+        required: true,
+        unique: true,
+        index: true
+    },
+    decimals: { type: BigInt, required: true }
+}
+
+type MongooseSchemaInterface = {
+    [K in keyof typeof schema]: MongooseSchemaType<typeof schema[K]['type']>;
+};
+
+const test: MongooseSchemaInterface = {
+    name: 123 // <-- Will not work
+}
 ```
 
 
