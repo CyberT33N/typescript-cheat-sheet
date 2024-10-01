@@ -1592,6 +1592,20 @@ ____________________________________________________________
 # import/export
 
 
+<br><br>
+<br><br>
+
+## dynamic import
+- You can only do:
+```typescript
+import { type IApple } from './Apple.ts'
+```
+
+but not:
+```typescript
+const { type IApple } = await import('./Apple.ts')
+```
+
 
 <br><br>
 <br><br>
