@@ -225,14 +225,8 @@ export interface BaseErrorMiddlewareInterface extends Pick<BaseErrorInterface, '
 
 ## Get key of type
 ```typescript
-# Example #1
 interface Accessor {
-    key(k: keyof Config): Config[typeof k];
-}
-
-# Example #2
-interface GenerateMongooseSchemaInterface<Schema> extends mongoose.Schema {
-    key(k: keyof Schema): SchemaValue<Schema[typeof k]>
+    key<K extends keyof Config>(k: K): Config[typeof k];
 }
 
 ```
