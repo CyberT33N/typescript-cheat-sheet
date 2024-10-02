@@ -55,6 +55,8 @@ type P = keyof Point;
 
 
 
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -96,6 +98,8 @@ ____________________________________________________________
 
 
 # Interface
+<details><summary>Click to expand..</summary>
+  
 - An interface is used to define a structure for an object. Interfaces can describe the properties and methods that an object should have. They are useful for defining contracts within your code and can be extended or implemented by classes.
 ```typescript
 interface User {
@@ -215,6 +219,37 @@ export interface BaseErrorMiddlewareInterface extends Pick<BaseErrorInterface, '
 
 
 
+<br><br>
+<br><br>
+
+
+## Get key of type
+```typescript
+# Example #1
+interface Accessor {
+    key(k: keyof Config): Config[typeof k];
+}
+
+# Example #2
+interface GenerateMongooseSchemaInterface<Schema> extends mongoose.Schema {
+    key(k: keyof Schema): SchemaValue<Schema[typeof k]>
+}
+
+```
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
 
 
 
@@ -249,6 +284,9 @@ export interface BaseErrorMiddlewareInterface extends Pick<BaseErrorInterface, '
 <br><br>
 
 # Type
+
+<details><summary>Click to expand..</summary>
+  
 ```typescript
 type Point = {
   x: number;
@@ -328,6 +366,27 @@ type Dog = Animal & {
 
 const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
 ```
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
