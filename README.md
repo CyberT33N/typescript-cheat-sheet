@@ -57,353 +57,6 @@ type P = keyof Point;
 
 
 
-<br><br>
-<br><br>
-____________________________________________________________
-____________________________________________________________
-<br><br>
-<br><br>
-
-
-
-
-# Differences Between `interface` and `type`
-
-## Extensibility:
-
-- **Interfaces** can be extended using the `extends` keyword.
-- **Type aliases** can be extended using intersection types.
-
-## Declaration Merging:
-
-- **Interfaces** can merge declarations. If you define an interface with the same name multiple times, TypeScript will merge them into a single interface.
-- **Type aliases** do not support declaration merging.
-
-## Use Cases:
-
-- **Interfaces** are typically used to define the shape of objects and are often preferred when defining APIs and classes.
-- **Type aliases** are more versatile and can be used for complex type definitions, unions, and intersections.
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-
-
-
-
-
-# Interface
-<details><summary>Click to expand..</summary>
-  
-- An interface is used to define a structure for an object. Interfaces can describe the properties and methods that an object should have. They are useful for defining contracts within your code and can be extended or implemented by classes.
-```typescript
-interface User {
-  name: string;
-  age: number;
-  greet(): string;
-}
-
-const user: User = {
-  name: "Alice",
-  age: 30,
-  greet() {
-    return `Hello, my name is ${this.name}`;
-  }
-};
-```
-
-
-
-
-<br><br>
-<br><br>
-
-
-## Merge Interfaces
-```typescript
-interface IFooBar extends IFoo, IBar {}
-```
-
-<br><br>
-<br><br>
-
-
-## Extend Interface
-```typescript
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  breed: string;
-}
-
-const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
-```
-
-
-
-<br><br>
-<br><br>
-
-
-## Use single property of interface
-```typescript
-interface ErrorDataInterface extends BaseErrorInterface {
-    data?: object
-}
-
-const test: ErrorDataInterface['data'] = { test: true };
-```
-
-
-
-
-
-<br><br>
-<br><br>
-
-
-## Overwrite specific property in interface
-- https://stackoverflow.com/questions/49198713/override-the-properties-of-an-interface-in-typescript
-```typescript
-// original interface
-interface A {
-  a: number;
-  b: number; // we want string type instead of number
-  c: number;
-}
-
-// Remove 'b'
-type BTemp = Omit<A, 'b' | 'c'>;
-
-// extends A (BTemp) and redefine b
-interface B extends BTemp {
-  b: string;
-  c: boolean;
-}
-
-const a: B = {
-  a: 5,
-  b: 'B'
-}
-```
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-
-
-## Merge interfaces and pick conflicting properties
-- Sometimes you want to merge interfaces which have the same properties but with different values e.g. like default values
-```typescript
-export interface BaseErrorMiddlewareInterface extends Pick<BaseErrorInterface, 'httpStatus' | 'name'>,
-    Omit<ErrorResponseInterface, 'httpStatus' | 'name'> {}
-```
-
-
-
-
-
-
-<br><br>
-<br><br>
-
-
-## Get key of type
-```typescript
-interface Accessor {
-    key<K extends keyof Config>(k: K): Config[typeof k];
-}
-
-```
-
-
-
-
-
-
-
-
-</details>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-
-# Type
-
-<details><summary>Click to expand..</summary>
-  
-```typescript
-type Point = {
-  x: number;
-  y: number;
-};
-
-type Response = string | number | boolean;
-
-const point: Point = { x: 10, y: 20 };
-const response: Response = "Success";
-```
-
-
-
-<br><br>
-<br><br>
-
-
-## Dynamic generate Type
-
-<br><br>
-
-
-### Auto generate type
-```typescript
-type MapSchemaTypes = {
-  string: string;
-  integer: number;
-  // others?
-}
-
-type MapSchema<T extends Record<string, keyof MapSchemaTypes>> = {
-  -readonly [K in keyof T]: MapSchemaTypes[T[K]]
-}
-
-const personSchema = { name: 'string', age: 'integer' } as const;
-type Person = MapSchema<typeof personSchema>;
-```
-
-<br><br>
-
-
-### Type is defined in object
-```typescript
-const schema = {
-    name: { 
-        type: String,
-        required: true,
-        unique: true,
-        index: true
-    },
-    decimals: { type: BigInt, required: true }
-}
-
-type MongooseSchemaInterface = {
-    [K in keyof typeof schema]: MongooseSchemaType<typeof schema[K]['type']>;
-};
-
-const test: MongooseSchemaInterface = {
-    name: 123 // <-- Will not work
-}
-```
-
-<br><br>
-<br><br>
-
-
-## Extending a Type Alia
-```typescript
-type Animal = {
-  name: string;
-};
-
-type Dog = Animal & {
-  breed: string;
-};
-
-const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
-```
-</details>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <br><br>
 <br><br>
@@ -582,6 +235,44 @@ console.log('Compiled path:', compiledPath)
 console.log('Compiled dir:', compiledDir)
 execSync(`tsup ${tsFilePath} --outDir ${compiledDir}`)
 ```
+
+
+
+## Convert single .ts file to .js
+```bash
+tsc app.ts
+```
+
+## Convert all .ts files in folder to .js
+```bash
+tsc
+```
+
+<br />
+<br />
+
+
+## Watch Node (Automatically convert .ts file to .js when .ts was edited and saved)
+
+#### single file
+```bash
+# Method #1
+tsc app.ts --watch
+
+# Method #2
+tsc app.ts -w
+```
+
+#### all files in project
+```bash
+# This will use all .ts files in the root folder (recursive) where the command was run
+tsc --init
+
+# Enable Watch Node for all files in the folder (recursive)
+tsc -w
+```
+
+
 
 
 
@@ -1018,6 +709,358 @@ function app(num){
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+
+
+# Differences Between `interface` and `type`
+
+## Extensibility:
+
+- **Interfaces** can be extended using the `extends` keyword.
+- **Type aliases** can be extended using intersection types.
+
+## Declaration Merging:
+
+- **Interfaces** can merge declarations. If you define an interface with the same name multiple times, TypeScript will merge them into a single interface.
+- **Type aliases** do not support declaration merging.
+
+## Use Cases:
+
+- **Interfaces** are typically used to define the shape of objects and are often preferred when defining APIs and classes.
+- **Type aliases** are more versatile and can be used for complex type definitions, unions, and intersections.
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+
+
+
+# Interface
+<details><summary>Click to expand..</summary>
+  
+- An interface is used to define a structure for an object. Interfaces can describe the properties and methods that an object should have. They are useful for defining contracts within your code and can be extended or implemented by classes.
+```typescript
+interface User {
+  name: string;
+  age: number;
+  greet(): string;
+}
+
+const user: User = {
+  name: "Alice",
+  age: 30,
+  greet() {
+    return `Hello, my name is ${this.name}`;
+  }
+};
+```
+
+
+
+
+<br><br>
+<br><br>
+
+
+## Merge Interfaces
+```typescript
+interface IFooBar extends IFoo, IBar {}
+```
+
+<br><br>
+<br><br>
+
+
+## Extend Interface
+```typescript
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+
+const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
+```
+
+
+
+<br><br>
+<br><br>
+
+
+## Use single property of interface
+```typescript
+interface ErrorDataInterface extends BaseErrorInterface {
+    data?: object
+}
+
+const test: ErrorDataInterface['data'] = { test: true };
+```
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+## Overwrite specific property in interface
+- https://stackoverflow.com/questions/49198713/override-the-properties-of-an-interface-in-typescript
+```typescript
+// original interface
+interface A {
+  a: number;
+  b: number; // we want string type instead of number
+  c: number;
+}
+
+// Remove 'b'
+type BTemp = Omit<A, 'b' | 'c'>;
+
+// extends A (BTemp) and redefine b
+interface B extends BTemp {
+  b: string;
+  c: boolean;
+}
+
+const a: B = {
+  a: 5,
+  b: 'B'
+}
+```
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+## Merge interfaces and pick conflicting properties
+- Sometimes you want to merge interfaces which have the same properties but with different values e.g. like default values
+```typescript
+export interface BaseErrorMiddlewareInterface extends Pick<BaseErrorInterface, 'httpStatus' | 'name'>,
+    Omit<ErrorResponseInterface, 'httpStatus' | 'name'> {}
+```
+
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+## Get key of type
+```typescript
+interface Accessor {
+    key<K extends keyof Config>(k: K): Config[typeof k];
+}
+
+```
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+# Type
+
+<details><summary>Click to expand..</summary>
+  
+```typescript
+type Point = {
+  x: number;
+  y: number;
+};
+
+type Response = string | number | boolean;
+
+const point: Point = { x: 10, y: 20 };
+const response: Response = "Success";
+```
+
+
+
+<br><br>
+<br><br>
+
+
+## Dynamic generate Type
+
+<br><br>
+
+
+### Auto generate type
+```typescript
+type MapSchemaTypes = {
+  string: string;
+  integer: number;
+  // others?
+}
+
+type MapSchema<T extends Record<string, keyof MapSchemaTypes>> = {
+  -readonly [K in keyof T]: MapSchemaTypes[T[K]]
+}
+
+const personSchema = { name: 'string', age: 'integer' } as const;
+type Person = MapSchema<typeof personSchema>;
+```
+
+<br><br>
+
+
+### Type is defined in object
+```typescript
+const schema = {
+    name: { 
+        type: String,
+        required: true,
+        unique: true,
+        index: true
+    },
+    decimals: { type: BigInt, required: true }
+}
+
+type MongooseSchemaInterface = {
+    [K in keyof typeof schema]: MongooseSchemaType<typeof schema[K]['type']>;
+};
+
+const test: MongooseSchemaInterface = {
+    name: 123 // <-- Will not work
+}
+```
+
+<br><br>
+<br><br>
+
+
+## Extending a Type Alia
+```typescript
+type Animal = {
+  name: string;
+};
+
+type Dog = Animal & {
+  breed: string;
+};
+
+const myDog: Dog = { name: "Buddy", breed: "Golden Retriever" };
+```
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br><br>
 <br><br>
@@ -1032,6 +1075,51 @@ ____________________________________________________________
 
 
 
+
+
+
+<br><br>
+<br><br>
+
+# Function Types
+
+<br><br>
+
+## Check if element is function with no parameter and check the core type of the return
+```typescript
+function app(){
+    return 13
+};
+
+const d: () => number = app;
+```
+
+<br><br>
+
+## Check if element is function with two parameter
+```typescript
+function app(name, age){
+    /*.. no return here .. Thats why we use void in this case!*/
+};
+
+const d: (a: number, b: boolean) => void = app;
+```
+
+<br><br>
+
+## Callbacks
+```typescript
+function doHomework(age: number, callback: (a:number) => void) {
+  callback(++age);
+}
+
+doHomework(21, () = >{
+  console.log('Function doHomework() was finished..');
+});
+```
+
+
+<br><br>
 
 
 
@@ -2535,54 +2623,6 @@ combine('Apple', 2);
 
 
 
-<br><br>
-<br><br>
-
-____________________________________________________________
-____________________________________________________________
-
-<br><br>
-<br><br>
-
-# Function Types
-
-<br><br>
-
-## Check if element is function with no parameter and check the core type of the return
-```typescript
-function app(){
-    return 13
-};
-
-const d: () => number = app;
-```
-
-<br><br>
-
-## Check if element is function with two parameter
-```typescript
-function app(name, age){
-    /*.. no return here .. Thats why we use void in this case!*/
-};
-
-const d: (a: number, b: boolean) => void = app;
-```
-
-<br><br>
-
-## Callbacks
-```typescript
-function doHomework(age: number, callback: (a:number) => void) {
-  callback(++age);
-}
-
-doHomework(21, () = >{
-  console.log('Function doHomework() was finished..');
-});
-```
-
-
-<br><br>
 
 
 
@@ -2604,59 +2644,6 @@ doHomework(21, () = >{
 
 
 
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-
-____________________________________________________________
-____________________________________________________________
-
-<br><br>
-<br><br>
-
-# Compiling
-
-## Convert single .ts file to .js
-```bash
-tsc app.ts
-```
-
-## Convert all .ts files in folder to .js
-```bash
-tsc
-```
-
-<br />
-<br />
-
-
-## Watch Node (Automatically convert .ts file to .js when .ts was edited and saved)
-
-#### single file
-```bash
-# Method #1
-tsc app.ts --watch
-
-# Method #2
-tsc app.ts -w
-```
-
-#### all files in project
-```bash
-# This will use all .ts files in the root folder (recursive) where the command was run
-tsc --init
-
-# Enable Watch Node for all files in the folder (recursive)
-tsc -w
-```
 
 
 
