@@ -2015,6 +2015,38 @@ const response: ApiResponse = {
 
 
 
+
+<br><br>
+<br><br>
+
+## Passing object to generic
+- Using typeof allows us to pass an object or other data types (https://www.typescriptlang.org/docs/handbook/2/typeof-types.html)
+```typescript
+ type MongooseSchemaInterface<Schema> = {
+     [K in keyof Schema]: SchemaValue<Schema[K]>
+ }
+
+const schema = {
+    // ==== GENERAL ====
+    name: { 
+        type: Number,
+        required: true,
+        unique: true,
+        index: true
+    },
+    avatar: {
+        type: [String],
+        default: []
+    },
+    decimals: { type: BigInt, required: true }
+}
+
+const userSchema = new mongoose.Schema<MongooseSchemaInterface<typeof schema>>(schema)
+```
+
+
+
+
 <br><br>
 <br><br>
 
