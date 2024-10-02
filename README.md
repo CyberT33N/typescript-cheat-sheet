@@ -2253,6 +2253,118 @@ type MongooseSchemaType<T> =
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+# Tests
+
+<br><br>
+
+## Test private Methods 
+
+<br><br>
+
+
+### Example #1
+- Get Prototype
+- Notice that you will create a new object here which does not include properties from your created instance
+```typescript
+class Example {
+    private privateMethod() {}
+    public test() {}
+}
+
+describe() {
+    it('test', () => {
+        const example = new Example();
+        const exampleProto = Object.getPrototypeOf(example);
+
+        exampleProto.privateMethod();
+    })
+}
+```
+
+<br><br>
+
+
+### Example #2
+- Type cast
+```typescript
+describe('getConnection', () => {
+  it.only('should return a valid mongoose connection', async() => {
+      const conn = await (<any>mongooseUtils).getConnection()
+  
+      expect(conn).toBeTruthy()
+      expect(conn).toBeInstanceOf(mongoose.Connection)
+  })
+})
+
+describe('getInstance()', () => {
+        let initStub: sinon.SinonStub
+
+        beforeEach(() => {
+            initStub = sinon.stub((<any>ModelManager).prototype, 'init').resolves()
+        })
+
+        afterEach(() => {
+            initStub.restore()
+        })
+
+        it.only('should create new instance', async() => {
+            const modelManager = await ModelManager.getInstance()
+
+            expect(initStub.calledOnce).toBe(true)
+            expect(modelManager.models).toEqual([])
+        })
+    })
+```
+
+<br><br>
+
+### Example #3
+- Casting
+```typescript
+beforeEach(() => {
+    initStub = sinon.stub(ModelManager.prototype, 'init' as keyof ModelManager).resolves()
+})
+```
+
+
+<br><br>
+
+
+### Example #4
+- Use Reflect
+```typescript
+ it.only('should create new instance', async() => {
+    const mongooseUtils = await MongooseUtils.getInstance()
+
+    expect(initStub.calledOnce).toBe(true)
+    expect(Reflect.get(mongooseUtils, 'connectionString')).toBe(process.env.MONGODB_CONNECTION_STRING)
+})
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2364,21 +2476,6 @@ export default class BalanceManager  {
 
 
 
-<br><br>
-<br><br>
-____________________________________________________________
-____________________________________________________________
-<br><br>
-<br><br>
-
-# Check
-
-# Union Types
-```typescript
-// Check if element has multiple core types
-function combine(a: number | string, b: number){ /*..*/ }
-combine('Apple', 2);
-```
 
 
 
@@ -2390,35 +2487,6 @@ combine('Apple', 2);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-____________________________________________________________
-____________________________________________________________
-<br><br>
-<br><br>
-
-# Literal Types
-```typescript
-// Check if element has specific value
-function combine(a: 'Apple' | 'Fish', b: number){ /*..*/ }
-combine('Apple', 2);
-```
 
 
 
@@ -2538,86 +2606,6 @@ interface Window {
 
 
 
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-
-____________________________________________________________
-____________________________________________________________
-
-<br><br>
-
-# Type Aliases
-```typescript
-// create const of specific uniony types
-type adminRights = number | 'FOUND'
-const d: adminRights = 'FOUND';
-```
-
-## Function
-```
-type Props = {
-     params: {
-           productId: string
-     }
-}
-
-/**
- * Renders the page for a specific product ID.
- * @param {Object} props - The component props.
- * @param {Object} props.params - The parameters object containing the product ID.
- * @param {string} props.params.productId - The product ID.
- * @returns {JSX.Element} The rendered page.
- */
-export default function ProductsId({ params }: Props) {
-    return (
-        <>
-            <h1>Product Id: { params.productId }</h1>
-        </>
-    )
-}
-```
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-
-____________________________________________________________
-____________________________________________________________
-
-<br><br>
-<br><br>
-
-# Function return types and voids
-```typescript
-// check if returned value is specific core type
-function combine(a: 'Apple' | 'Fish', b: number): boolean{
-  if( b === 1 ) return true;
-};
-combine('Apple', 2);
-
-// check if there is any return in function
-function combine(a: 'Apple' | 'Fish', b: number): void{
-  console.log( 'We do not return here..' );
-};
-combine('Apple', 2);
-```
 
 
 
