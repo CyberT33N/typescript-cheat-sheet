@@ -2271,7 +2271,7 @@ ____________________________________________________________
 
 ### Example #1
 - Get Prototype
-- Notice that you will create a new object here which does not include properties from your created instance
+- **Notice that you will create a new object here which does not include properties from your created instance**
 ```typescript
 class Example {
     private privateMethod() {}
