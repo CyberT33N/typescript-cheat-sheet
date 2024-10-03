@@ -2335,10 +2335,13 @@ beforeEach(() => {
 
 
 <br><br>
+<br><br>
 
+### Example #4 - Reflect
 
-### Example #4
-- Use Reflect
+<br><br>
+
+#### Get Property
 ```typescript
  it.only('should create new instance', async() => {
     const mongooseUtils = await MongooseUtils.getInstance()
@@ -2346,6 +2349,14 @@ beforeEach(() => {
     expect(initStub.calledOnce).toBe(true)
     expect(Reflect.get(mongooseUtils, 'connectionString')).toBe(process.env.MONGODB_CONNECTION_STRING)
 })
+```
+
+<br><br>
+
+#### Call private method
+```typescript
+const initMethod: Function = Reflect.get(modelManager, 'init');
+await initMethod.call(modelManager);               
 ```
 
 
