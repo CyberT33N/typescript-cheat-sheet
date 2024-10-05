@@ -1612,33 +1612,10 @@ try {
 - The negative fact about this solution is that you would have to write 2 tests to get 100% coverage
 
 
-Here is another example for a unit test:
-```typescript
-it('should throw an error when initializing connection with mongoose fails', async () => {
-    try {
-        await Object.getPrototypeOf(mongooseUtils).init()
-        assert.fail('This line should not be reached')
-    } catch (err) {
-        if (err instanceof BaseError) {
-            const typedErr: IBaseError = err 
-            expectTypeOf(typedErr).toEqualTypeOf<IBaseError>()
-
-            expect(typedErr.error?.message).toBe(expectedErrorMessage)
-            expect(typedErr.message).toBe(
-                '[ModelManager] - Error while initializing connection with MongoDB'
-            )
-
-            return
-        }
-
-        assert.fail('This line should not be reached')
-    }
-})
-```
 
 
-
-
+<br><br>
+<br><br>
 
 
 ### Tests
