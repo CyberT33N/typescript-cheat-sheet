@@ -1623,7 +1623,9 @@ try {
     await axios.get(`${BASE_URL}/base-error?error=true`)
     throw new Error('Base Error Test - This should not be called')
 } catch (e: unknown) {
-    const { response } = e as AxiosError
+    const castedErr = e as AxiosError
+
+    const { response } = castedErr
     expect(response?.status).to.equal(500)
 
     expect(response?.data).to.include({
