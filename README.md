@@ -1581,6 +1581,67 @@ ____________________________________________________________
 
 ## Try Catch
 - In Typescript the catched error can only be any or unknown. Because you should never use any the only type you can use is `unknown`
+- Update: TypeScript 4.4 provides a config flag --useUnknownInCatchVariables to let catch-variables default to type unknown. This is also automatically enabled with the --strict flag.
+
+<br><br>
+
+
+You should avoid to use type casting with `as` unless you 100% sure what you are expecting because you will overwrite the type of the error and you are not able to test it anymore or to pass it in the verified way. 
+
+This would be actually the right answer
+```typescript
+import BaseError from './src/errors/BaseError'
+
+const fn = () => {
+    throw new Error('Any js error')
+}
+
+try {
+    fn()
+} catch (err) {
+    const errMsg = 'Can not create chat completion'
+
+    if (err instanceof BaseError) {
+        throw new BaseError(errMsg, err)
+    }
+
+    throw new Error(errMsg, { cause: err })
+}
+```
+- Imagine you would use instead only `throw new BaseError(errMsg, err as Error)` then you would tell your custom error class that err is always an Error but this is risky and can cause problem the more specifc your error handling is or what you expect. E.g. when you expect AxiosError then you reached the catch block maybe with a normal js error instead but because you would write `HttpClientError(errMsg, err as AxiosError)` you would pass the normal error instance as AxiosError
+- The negative fact about this solution is that you would have to write 2 tests to get 100% coverage
+
+
+Here is another example for a unit test:
+```typescript
+it('should throw an error when initializing connection with mongoose fails', async () => {
+    try {
+        await Object.getPrototypeOf(mongooseUtils).init()
+        assert.fail('This line should not be reached')
+    } catch (err) {
+        if (err instanceof BaseError) {
+            const typedErr: IBaseError = err 
+            expectTypeOf(typedErr).toEqualTypeOf<IBaseError>()
+
+            expect(typedErr.error?.message).toBe(expectedErrorMessage)
+            expect(typedErr.message).toBe(
+                '[ModelManager] - Error while initializing connection with MongoDB'
+            )
+
+            return
+        }
+
+        assert.fail('This line should not be reached')
+    }
+})
+```
+
+
+
+
+
+
+### Tests
 
 <br><br>
 
@@ -1607,7 +1668,7 @@ it('should throw an error when initializing connection with mongoose fails', asy
     }
 })
 ```
-- Update: TypeScript 4.4 provides a config flag --useUnknownInCatchVariables to let catch-variables default to type unknown. This is also automatically enabled with the --strict flag.
+
 
 
 <br><br>
