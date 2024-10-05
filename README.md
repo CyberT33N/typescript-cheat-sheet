@@ -1705,7 +1705,7 @@ ____________________________________________________________
 - https://www.typescriptlang.org/docs/handbook/2/classes.html#handbook-content
 ```typescript
 // ==== INTERFACES ====
-interface BaseErrorInterface {
+export interface BaseErrorInterface {
      name: string
      httpStatus: number
      readonly title: string
@@ -1731,6 +1731,9 @@ class BaseError extends Error implements BaseErrorInterface {
 
 export default BaseError
 ```
+- **When you create a class then Typescript will autmatically creae a type that you can re-use your class in another file as class and as type. However, this will only work for the class defined types and for the extended classes. It will not implement your Interface types even whn you use `immplements`. This means if needed you need to export the interface aswell if it is maybe different to the class itself**
+
+
 - When you define e.g. `public title: string` in your constructor argument it will be synthetic sugar and will do the same as:
   ```typescript
     constructor(
@@ -1739,8 +1742,6 @@ export default BaseError
         this.title = title
     }
   ```
-- **When you use `implements` then you can import the class later in any file and use it as class aswell as type**
-
 
 
 
