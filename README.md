@@ -1732,6 +1732,9 @@ class BaseError extends Error implements BaseErrorInterface {
 export default BaseError
 ```
 - **When you create a class then Typescript will autmatically creae a type that you can re-use your class in another file as class and as type. However, this will only work for the class defined types and for the extended classes. It will not implement your Interface types even whn you use `immplements`. This means if needed you need to export the interface aswell if it is maybe different to the class itself**
+  - **When to Use a Class as a Type?** If you only need the functionality of your standalone class and it will not be extended by other classes and its types without any further implementations or structures, it is perfectly fine to use the class itself as a type. This saves you additional boilerplate code. However, if not you should create a own interface
+
+
 
 
 - When you define e.g. `public title: string` in your constructor argument it will be synthetic sugar and will do the same as:
