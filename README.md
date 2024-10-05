@@ -1581,7 +1581,7 @@ ____________________________________________________________
 - In Typescript the catched error can only be any or unknown. Because you should never use any the only type you can use is `unknown`
 
 [METHOD #1] Define new error variable and cast interface
-```
+```typescript
 import axios, { AxiosError } from 'axios'
 
 try {
