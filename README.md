@@ -1646,6 +1646,34 @@ it('should throw an error when initializing connection with mongoose fails', asy
 })
 ```
 
+Another example:
+```typescript
+import axios, { AxiosError } from 'axios'
+import { it, expect, expectTypeOf, assert } from 'vitest'
+import { type IBaseError, StatusCodes } from 'error-manager-helper'
+
+it('should return 500 with BaseError details - error passed', async() => {
+    try {
+        await axios.get('https://localhost:3000/base-error?param=wrong')
+        assert.fail('This line should not be reached')
+    } catch (err) {
+        if (err instanceof AxiosError) {
+            expect(err.status).to.equal(StatusCodes.INTERNAL_SERVER_ERROR)
+
+            const data: IBaseError = err.response?.data
+            expectTypeOf(data).toEqualTypeOf<IBaseError>()
+
+            expect(data.error).toEqual(`Error: ${errorMessageFromService}`)
+            expect(data.message).toBe(errorMessage)
+
+            return
+        }
+
+        assert.fail('This line should not be reached')
+    }
+})
+```
+
 
 
 <br><br>
