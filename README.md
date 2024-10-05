@@ -1636,6 +1636,15 @@ try {
 
 
 
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 ____________________________________________________________
@@ -1644,7 +1653,113 @@ ____________________________________________________________
 <br><br>
 
 
-# Abstract Classes
+
+# Functions
+
+<br><br>
+
+## Assign Interface to Arguments
+```typescript
+// Option #1
+function createPerson(person: Person) { /* ... */ }
+
+// Option #1
+function createPerson({name, age}: Person) { /* ... */ }
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+
+# Classes
+- https://www.typescriptlang.org/docs/handbook/2/classes.html#handbook-content
+```typescript
+// ==== INTERFACES ====
+interface BaseErrorInterface {
+     name: string
+     httpStatus: number
+     readonly title: string
+     readonly e?: Error | null
+}
+
+/**
+ * Base Error - Default HTTP Status 500
+ */
+class BaseError extends Error implements BaseErrorInterface {
+    httpStatus: number
+
+    constructor(
+        readonly title: string,
+        readonly e?: Error | null
+    ) {
+        super(title)
+ 
+        this.name = 'BaseError'
+        this.httpStatus = 500
+    }
+}
+
+export default BaseError
+```
+- When you define e.g. `public title: string` in your constructor argument it will be synthetic sugar and will do the same as:
+  ```typescript
+    constructor(
+        title: string,
+    ) {
+        this.title = title
+    }
+  ```
+- **When you use `implements` then you can import the class later in any file and use it as class aswell as type**
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+
+
+## Abstract Classes
 - https://www.tutorialsteacher.com/typescript/abstract-class
 - You can not create a new instance of it
 - You can create abstract methods only for type declaration
@@ -1734,105 +1849,8 @@ let emp2: Person = emp.find('Steve');
 
 
 
-
-
-
 <br><br>
 <br><br>
-____________________________________________________________
-____________________________________________________________
-<br><br>
-<br><br>
-
-
-
-# Functions
-
-<br><br>
-
-## Assign Interface to Arguments
-```typescript
-// Option #1
-function createPerson(person: Person) { /* ... */ }
-
-// Option #1
-function createPerson({name, age}: Person) { /* ... */ }
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<br><br>
-____________________________________________________________
-____________________________________________________________
-<br><br>
-<br><br>
-
-
-
-# Classes
-- https://www.typescriptlang.org/docs/handbook/2/classes.html#handbook-content
-```typescript
-// ==== INTERFACES ====
-export interface BaseErrorInterface {
-     name: string
-     httpStatus: number
-     readonly title: string
-     readonly e?: Error | null
-}
-
-/**
- * Base Error - Default HTTP Status 500
- */
-class BaseError extends Error implements BaseErrorInterface {
-    httpStatus: number
-
-    constructor(
-        readonly title: string,
-        readonly e?: Error | null
-    ) {
-        super(title)
- 
-        this.name = 'BaseError'
-        this.httpStatus = 500
-    }
-}
-
-export default BaseError
-```
-- When you define e.g. `public title: string` in your constructor argument it will be synthetic sugar and will do the same as:
-  ```typescript
-    constructor(
-        title: string,
-    ) {
-        this.title = title
-    }
-  ```
-
-
 <br><br>
 
 ## Heritage
