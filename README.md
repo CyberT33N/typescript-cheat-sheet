@@ -1584,7 +1584,7 @@ ____________________________________________________________
 
 <br><br>
 
-[METHOD #2 RECOMMENDED] Check for instance
+[METHOD #1 - RECOMMENDED] Check for instance
 ```typescript
 it('should throw an error when initializing connection with mongoose fails', async () => {
     try {
@@ -1614,8 +1614,8 @@ it('should throw an error when initializing connection with mongoose fails', asy
 <br><br>
 
 
-[METHOD #2] Define new error variable and cast interface
-- **If you write integration tests you can use casting with as. However, with unit tests this is not recommended because you overwrite the actually types and you are not able anymore to make type checks**
+[METHOD #2 - NOT RECOMMENDED] Define new error variable and cast interface
+- **This is not recommended because you overwrite the actually types and you are not able anymore to make type checks**
 ```typescript
 import axios, { AxiosError } from 'axios'
 
