@@ -1601,7 +1601,7 @@ try {
 } catch (err) {
     const errMsg = 'Can not create chat completion'
 
-    if (err instanceof BaseError) {
+    if (err instanceof Error) {
         throw new BaseError(errMsg, err)
     }
 
