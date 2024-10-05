@@ -1616,8 +1616,8 @@ try {
  } else {
    // it was some other kind of error, handle it appropriately
  } 
-
 ```
+- Update: TypeScript 4.4 provides a config flag --useUnknownInCatchVariables to let catch-variables default to type unknown. This is also automatically enabled with the --strict flag.
 
 
 
