@@ -1577,10 +1577,45 @@ ____________________________________________________________
 
 # Error
 
+<br><br>
+
 ## Try Catch
 - In Typescript the catched error can only be any or unknown. Because you should never use any the only type you can use is `unknown`
 
-[METHOD #1] Define new error variable and cast interface
+<br><br>
+
+[METHOD #2 RECOMMENDED] Check for instance
+```typescript
+it('should throw an error when initializing connection with mongoose fails', async () => {
+    try {
+        await Object.getPrototypeOf(mongooseUtils).init()
+        assert.fail('This line should not be reached')
+    } catch (err) {
+        if (err instanceof BaseError) {
+            const typedErr: IBaseError = err 
+            expectTypeOf(typedErr).toEqualTypeOf<IBaseError>()
+
+            expect(typedErr.error?.message).toBe(expectedErrorMessage)
+            expect(typedErr.message).toBe(
+                '[ModelManager] - Error while initializing connection with MongoDB'
+            )
+
+            return
+        }
+
+        assert.fail('This line should not be reached')
+    }
+})
+```
+- Update: TypeScript 4.4 provides a config flag --useUnknownInCatchVariables to let catch-variables default to type unknown. This is also automatically enabled with the --strict flag.
+
+
+<br><br>
+<br><br>
+
+
+[METHOD #2] Define new error variable and cast interface
+- **If you write integration tests you can use casting with as. However, with unit tests this is not recommended because you overwrite the actually types and you are not able anymore to make type checks**
 ```typescript
 import axios, { AxiosError } from 'axios'
 
@@ -1599,28 +1634,6 @@ try {
     })
 }
 ```
-
-
-[METHOD #2] Check for instance
-```typescript
-import axios, {AxiosError} from "axios";
-
-try {
-  some request
-} catch(err) {
- if (err instanceof AxiosError) {
-   console.log(error.response);
-   if(error.response?.data?.statusCode === 401) {
-     logout();
-   } 
- } else {
-   // it was some other kind of error, handle it appropriately
- } 
-```
-- Update: TypeScript 4.4 provides a config flag --useUnknownInCatchVariables to let catch-variables default to type unknown. This is also automatically enabled with the --strict flag.
-
-
-
 
 
 
