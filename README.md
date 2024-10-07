@@ -2369,7 +2369,27 @@ ____________________________________________________________
 
 ## Test private Methods 
 
+
+
+
 <br><br>
+
+
+### Example #0
+```
+myClassInstance['privateProp']
+myClassInstance['privateMethod']()
+```
+
+
+
+
+
+
+<br><br>
+
+<br><br>
+
 
 
 ### Example #1
