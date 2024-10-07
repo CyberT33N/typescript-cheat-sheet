@@ -2375,7 +2375,7 @@ ____________________________________________________________
 <br><br>
 
 
-### Example #0
+### Example #1 [RECOMMENDED BEST METHOD]
 ```
 myClassInstance['privateProp']
 myClassInstance['privateMethod']()
@@ -2387,12 +2387,11 @@ myClassInstance['privateMethod']()
 
 
 <br><br>
-
 <br><br>
 
 
 
-### Example #1
+### Example #2
 - Get Prototype
 - **Notice that you will create a new object here which does not include properties from your created instance**
 ```typescript
@@ -2418,7 +2417,7 @@ describe() {
 
 <br><br>
 
-### Example #2
+### Example #3
 - Casting
 ```typescript
 beforeEach(() => {
@@ -2430,7 +2429,7 @@ beforeEach(() => {
 <br><br>
 <br><br>
 
-### Example #3 - Reflect
+### Example #4 - Reflect
 
 <br><br>
 
@@ -2483,7 +2482,7 @@ await initMethod.call(modelManager);
 
 
 
-### Example #4 (not recommended)
+### Example #5 (not recommended)
 - Type cast any
 ```typescript
 describe('getConnection', () => {
@@ -2514,6 +2513,30 @@ describe('getInstance()', () => {
         })
     })
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
