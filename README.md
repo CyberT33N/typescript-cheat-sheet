@@ -1082,6 +1082,14 @@ ____________________________________________________________
 <br><br>
 
 # Function Types
+```
+export type IErrorMiddleware = (
+    err: ICoreError,
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => void;
+```
 
 <br><br>
 
