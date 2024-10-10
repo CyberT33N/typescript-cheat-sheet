@@ -1638,8 +1638,7 @@ it('should throw an error when initializing connection with mongoose fails', asy
         assert.fail('This line should not be reached')
     } catch (err) {
         if (err instanceof BaseError) {
-            const typedErr: IBaseError = err 
-            expectTypeOf(typedErr).toEqualTypeOf<IBaseError>()
+            const typedErr = err 
 
             expect(typedErr.error?.message).toBe(expectedErrorMessage)
             expect(typedErr.message).toBe(
@@ -1668,8 +1667,7 @@ it('should return 500 with BaseError details - error passed', async() => {
         if (err instanceof AxiosError) {
             expect(err.status).to.equal(StatusCodes.INTERNAL_SERVER_ERROR)
 
-            const data: IBaseError = err.response?.data
-            expectTypeOf(data).toEqualTypeOf<IBaseError>()
+            const data = err.response?.data as IBaseError
 
             expect(data.error).toEqual(`Error: ${errorMessageFromService}`)
             expect(data.message).toBe(errorMessage)
