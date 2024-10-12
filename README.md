@@ -276,6 +276,185 @@ tsc -w
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+---
+<br><br>
+<br><br>
+
+
+# Build Tools
+<details><summary>Click to expand..</summary>
+
+## tsup
+- Will biuld your ts project and transpile your ts files into esm und cjs files and more..
+
+package.json:
+```javasscript
+{
+  "name": "mongoose-model-manager",
+  "type": "module",
+  "version": "1.3.0",
+  "description": "ModelManager is a powerful and flexible manager for Mongoose models in Node.js applications. This class simplifies the management of data models, allowing developers to dynamically load and manage Mongoose models.",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "import": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "type-check": "npx @arethetypeswrong/cli",
+    "build-raw": "tsup",
+    "build": "npx eslint src test && tsup",
+    "test-only": "bash test-only.sh",
+    "test": "vitest --typecheck --coverage --disable-console-intercept --watch=false",
+    "test:watch": "vitest --typecheck --watch",
+    "test:unit": "vitest run --typecheck --testTimeout=300000 --coverage --disable-console-intercept --watch=false --config vitest.unit.config.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CyberT33N/ModelManager.git"
+  },
+  "keywords": [
+    "mongoose",
+    "model",
+    "manager",
+    "mongoose-model-manager",
+    "mongodb",
+    "node"
+  ],
+  "author": "CyberT33N",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CyberT33N/ModelManager/issues"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/express": "^4.17.21",
+    "@types/lodash": "^4.17.9",
+    "@types/node": "^20.12.11",
+    "@types/sinon": "^17.0.3",
+    "@vitest/coverage-v8": "^2.0.5",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.12.0",
+    "globals": "^15.2.0",
+    "mongodb-memory-server": "^10.0.1",
+    "sinon": "^18.0.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.8.1",
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.1.1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "error-manager-helper": "^4.5.0",
+    "glob": "^10.3.15",
+    "lodash": "^4.17.21",
+    "mongoose": "^8.7.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "homepage": "https://github.com/CyberT33N/ModelManager#readme"
+}
+```
+
+tsup.config.ts
+```typescript
+import { defineConfig } from 'tsup'
+import * as glob from 'glob'
+
+const entries = glob.sync('./src/*.ts')
+console.log(entries)
+
+export default defineConfig({
+    entry: entries,
+    format: ['cjs', 'esm'], // Build for commonJS and ESmodules
+    dts: true, // Generate declaration file (.d.ts)
+    splitting: false,
+    // outExtension: ({ format }) => {
+    //     if (format === 'esm') return { js: '.mjs' }  // Setze die Dateiendung auf .mjs für ESM
+    //     return { js: '.js' }     // Fallback auf .js für andere Formate
+    // },
+    sourcemap: true,
+    clean: true
+})
+```
+
+<details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
 <br><br>
 
