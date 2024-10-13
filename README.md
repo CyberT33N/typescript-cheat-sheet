@@ -1505,13 +1505,57 @@ const d: [number, string] = [1, 'b'];
 
 ## Union
 - https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html
+- https://www.w3schools.com/typescript/typescript_union_types.php
 ```typescript
 function padLeft(value: string, padding: string | number) {
   // ...
 }
 ```
 
+### Union with interfaces
 
+**Problem:**
+When using `IFixtureDoc | IFixtureObject`, TypeScript throws an error because the property `name` does not exist on both types.
+
+**Error Example:**
+```typescript
+Property 'name' does not exist on type 'IFixtureDoc | IFixtureObject'.ts(2339)
+```
+
+**Why It Happens:**
+- `name` exists on `IFixtureDoc` but not on `IFixtureObject`.
+- TypeScript cannot infer which type you’re dealing with when using a union (`|`), so it flags access to properties that don’t exist on all types in the union.
+
+### Solution: Type Narrowing
+
+Use a **type check** to narrow down the type before accessing the property. This ensures TypeScript knows you're working with `IFixtureDoc`.
+
+**Example Fix:**
+```typescript
+const fixture = this.fixtures[dbName][collectionName][id];
+
+// Type narrowing using 'in'
+if ('name' in fixture) {
+    fixture.name = '1234'; // Safe to access `name` here
+} else {
+    console.error('Name property does not exist on this fixture.');
+}
+```
+
+**Why This Works:**
+- The `'name' in fixture` check ensures that `fixture` is of type `IFixtureDoc`, as only `IFixtureDoc` has the `name` property.
+- If `fixture` is of type `IFixtureObject`, the code falls to the `else` block, avoiding errors.
+
+**Summary:**
+- **Use union types carefully**: Access properties only after ensuring they exist on the current type.
+- **Type narrowing**: Use `in` to check if a property exists on the object.
+
+
+
+
+
+<br><br>
+<br><br>
 <br><br>
 <br><br>
 
