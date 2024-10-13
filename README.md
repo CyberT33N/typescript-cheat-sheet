@@ -416,7 +416,7 @@ export default defineConfig({
 })
 ```
 
-<details>
+</details>
 
 
 
