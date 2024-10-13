@@ -1796,6 +1796,279 @@ fn()
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+# Type Guard
+A type guard is a TypeScript technique used to get information about the type of a variable, usually within a conditional block. Type guards are regular functions that return a Boolean, taking a type and telling TypeScript if it can be narrowed down to something more specific. Type guards have the unique property of assuring that the value tested is of a set type depending on the returned Boolean.
+
+TypeScript uses built-in JavaScript operators like typeof, instanceof, and in to determine if an object contains a property. Type guards enable you to instruct the TypeScript compiler to infer a specific type for a variable in a particular context. This process validates that the type of an argument aligns with the specified type, enhancing type accuracy and code reliability.
+
+Type guards are typically used for narrowing a type and are quite similar to feature detection, allowing you to detect the correct methods, prototypes, and properties of a value. Therefore, you can easily figure out how to handle that value.
+
+<br><br>
+
+## Guides
+- https://www.typescriptlang.org/docs/handbook/advanced-types.html
+- https://blog.logrocket.com/how-to-use-type-guards-typescript/
+
+
+## `instanceof` Type Guard
+Der `instanceof` Type Guard prüft, ob ein Wert eine Instanz einer bestimmten Konstruktorfunktion oder Klasse ist. Dies ist nützlich, um den Typ einer Instanz zu bestimmen.
+
+### Syntax
+```typescript
+objectVariable instanceof ClassName;
+```
+
+### Beispiel
+```typescript
+interface Accessory {
+    brand: string;
+}
+
+class Necklace implements Accessory {
+    kind: string;
+    brand: string;
+
+    constructor(brand: string, kind: string) {    
+        this.brand = brand;
+        this.kind = kind;
+    }
+}
+
+class Bracelet implements Accessory {
+    brand: string;
+    year: number;
+
+    constructor(brand: string, year: number) {    
+        this.brand = brand;
+        this.year = year;
+    }
+}
+
+const getRandomAccessory = () => {
+    return Math.random() < 0.5 ?
+        new Bracelet('cartier', 2021) :
+        new Necklace('choker', 'TASAKI');
+};
+
+let accessory = getRandomAccessory();
+
+if (accessory instanceof Bracelet) {
+    console.log(accessory.year);
+}
+if (accessory instanceof Necklace) {
+    console.log(accessory.brand);    
+}
+```
+
+---
+
+## `typeof` Type Guard
+Der `typeof` Type Guard bestimmt den Typ einer Variablen. Er ist auf die in JavaScript erkannten Typen beschränkt.
+
+### Erkennbare Typen
+- boolean
+- string
+- bigint
+- symbol
+- undefined
+- function
+- number
+
+### Syntax
+```typescript
+typeof v !== "typename" 
+# oder 
+typeof v === "typename"
+```
+
+### Beispiel
+```typescript
+function StudentId(x: string | number) {
+    if (typeof x === 'string') {
+        console.log('Student');
+    }
+    if (typeof x === 'number') {
+        console.log('Id');
+    }
+}
+StudentId(`446`); // prints Student
+StudentId(446); // prints Id
+```
+
+---
+
+## `in` Type Guard
+Der `in` Type Guard prüft, ob ein Objekt eine bestimmte Eigenschaft hat. Dies wird oft verwendet, um zwischen verschiedenen Typen zu unterscheiden.
+
+### Syntax
+```typescript
+propertyName in objectName
+```
+
+### Beispiel
+```typescript
+interface Pupil {
+    ID: string;
+}
+
+interface Adult {
+    SSN: number;
+}
+
+interface Person {
+    name: string;
+    age: number;
+}
+
+let person: Pupil | Adult | Person = {
+    name: 'Britney',
+    age: 6
+};
+
+const getIdentifier = (person: Pupil | Adult | Person) => {
+    if ('name' in person) {
+        return person.name;
+    } else if ('ID' in person) {
+        return person.ID;
+    }
+    return person.SSN;
+};
+```
+
+---
+
+## `is` Operator
+Der `is` Operator überprüft, ob ein Wert oder eine Variable einen bestimmten Typ hat und wird oft in benutzerdefinierten Typ-Wächtern verwendet.
+
+### Syntax
+```typescript
+variablename is typename
+```
+
+### Beispiel
+```typescript
+interface Cat {
+    meow(): void;
+}
+
+interface Dog {
+    bark(): void;
+}
+
+function isCat(pet: Dog | Cat): pet is Cat {
+    return (pet as Cat).meow !== undefined;
+}
+
+let pet: Dog | Cat;
+
+if (isCat(pet)) {
+    pet.meow();
+} else {
+    pet.bark();
+}
+```
+
+---
+
+## Equality Narrowing Type Guard
+Der Equality Narrowing prüft den Wert eines Ausdrucks. Wenn zwei Variablen gleich sind, müssen sie den gleichen Typ haben.
+
+### Beispiel
+```typescript
+function getValues(a: number | string, b: string) {
+    if (a === b) {
+        console.log(typeof a); // string
+    } else {
+        console.log(typeof a); // number oder string
+    }
+}
+```
+
+---
+
+## Benutzerdefinierter Typ Guard mit Prädikat
+Ein benutzerdefinierter Typ Guard ermöglicht umfassendere Prüfungen.
+
+### Beispiel
+```typescript
+interface Necklace {
+    kind: string;
+    brand: string;
+}
+
+interface Bracelet {
+    brand: string;
+    year: number;
+}
+
+type Accessory = Necklace | Bracelet;
+
+const isNecklace = (b: Accessory): b is Necklace => {
+    return (b as Necklace).kind !== undefined;
+};
+
+const necklace: Accessory = { kind: "Choker", brand: "TASAKI" };
+const bracelet: Accessory = { brand: "Cartier", year: 2021 };
+
+console.log(isNecklace(bracelet)); // Logs false
+console.log(isNecklace(necklace)); // Logs true
+```
+
+---
+
+## Benutzerdefinierte Typ Guards
+Benutzerdefinierte Typ Guards überprüfen zur Laufzeit den Typ eines Wertes oder Ausdrucks und verbessern die Lesbarkeit des Codes.
+
+### Beispiel
+```typescript
+function isBaby(obj: any): obj is Baby {
+    return typeof obj === "object" && obj !== null && "sound" in obj;
+}
+
+interface Baby {
+    sound: string;
+}
+
+function makeSound(baby: any) {
+    if (isBaby(baby)) {
+        console.log("Making a sound:", baby.sound);
+    } else {
+        console.log("Not a valid baby.");
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
