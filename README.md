@@ -10,6 +10,29 @@ TypeScript Course for Beginners 2020 - Learn TypeScript from Scratch! (https://w
 
 
 
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
+<br><br>
+<br><br>
+
+
+# package.json
+
+<br><br>
+
+## run ts file
+
+<br><br>
+
+### tsx
+- https://www.npmjs.com/package/tsx
+```
+"scripts": {
+      "gif": "tsx utils/gif-creator.ts"
+}
+```
 
 
 
