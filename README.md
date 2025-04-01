@@ -3347,6 +3347,22 @@ ____________________________________________________________
 <br><br>
 
 # Global
+
+
+# Method #1 (recommended)
+
+global.d.ts:
+```typescript
+export declare global {
+  // eslint-disable-next-line no-var
+  var axiosP1: AxiosInstance
+}
+```
+
+<br><br>
+
+
+# Method  #2
 - Create at your root global.d.ts
 ```
 interface Window {
