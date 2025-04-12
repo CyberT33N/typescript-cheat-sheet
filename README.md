@@ -2421,6 +2421,175 @@ export default BaseError
 
 
 
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+
+## Heritage
+```typescript
+interface Pingable {
+  ping(): void;
+}
+ 
+class Sonar implements Pingable {
+  ping() {
+    console.log("ping!");
+  }
+}
+ 
+```
+
+
+
+<br><br>
+<br><br>
+
+# Getters & Setters
+```typescript
+class Thing {
+  _size = 0;
+ 
+  get size(): number {
+    return this._size;
+  }
+ 
+  set size(value: string | number | boolean) {
+    let num = Number(value);
+ 
+    // Don't allow NaN, Infinity, etc
+ 
+    if (!Number.isFinite(num)) {
+      this._size = 0;
+      return;
+    }
+ 
+    this._size = num;
+  }
+}
+```
+
+
+
+
+
+
+
+
+# private vs protected
+
+<details><summary>Click to expand..</summary>
+
+### 🔒 `private`
+- **Nur in der Klasse selbst** sichtbar.
+- **Nicht** in erbenden Klassen (Subklassen).
+- Wird oft verwendet, um **vollständig interne Details** zu kapseln.
+
+```ts
+class A {
+  private geheimnis(): string {
+    return "Top Secret 🕵️‍♂️";
+  }
+
+  public zeigEs(): string {
+    return this.geheimnis(); // ✅ erlaubt
+  }
+}
+
+class B extends A {
+  public versuchMal(): string {
+    // return this.geheimnis(); ❌ Fehler: `geheimnis` ist privat
+    return "Geht nicht!";
+  }
+}
+```
+
+---
+
+### 🧬 `protected`
+- In der Klasse selbst **und in allen erbenden Klassen** sichtbar.
+- Wird verwendet, wenn du möchtest, dass **Unterklassen** auf bestimmte interne Methoden oder Eigenschaften zugreifen dürfen.
+
+```ts
+class A {
+  protected tipp(): string {
+    return "Benutz mich!";
+  }
+}
+
+class B extends A {
+  public machWas(): string {
+    return this.tipp(); // ✅ erlaubt, weil `protected`
+  }
+}
+```
+
+---
+
+### 🆚 Vergleich auf den Punkt gebracht:
+
+| Sichtbarkeit | Klasse selbst | Subklassen | Außenstehend |
+|--------------|---------------|------------|---------------|
+| `private`    | ✅             | ❌          | ❌             |
+| `protected`  | ✅             | ✅          | ❌             |
+| `public`     | ✅             | ✅          | ✅             |
+
+---
+
+### Wann was?
+
+| Zugriffstyp     | Verwendung                                                                 |
+|------------------|---------------------------------------------------------------------------|
+| `private`        | Wenn **wirklich niemand außer der Klasse selbst** Zugriff haben soll.     |
+| `protected`      | Wenn **nur du und deine Erben** damit arbeiten dürfen.                    |
+| `public`         | Wenn es **Teil der API** oder der öffentlichen Schnittstelle sein soll.   |
+
+---
+
+🧠 **Faustregel für eleganten Code**:  
+> Starte immer so restriktiv wie möglich (`private`) – und öffne nur, wenn nötig (`protected` → `public`).
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+____________________________________________________________
+____________________________________________________________
 <br><br>
 <br><br>
 
@@ -2428,6 +2597,13 @@ export default BaseError
 
 
 ## Abstract Classes
+
+
+<details><summary>Click to expand..</summary>
+
+
+
+
 - https://www.tutorialsteacher.com/typescript/abstract-class
 - You can not create a new instance of it
 - You can create abstract methods only for type declaration
@@ -2517,52 +2693,23 @@ let emp2: Person = emp.find('Steve');
 
 
 
-<br><br>
-<br><br>
-<br><br>
-
-## Heritage
-```typescript
-interface Pingable {
-  ping(): void;
-}
- 
-class Sonar implements Pingable {
-  ping() {
-    console.log("ping!");
-  }
-}
- 
-```
+</details>
 
 
 
-<br><br>
-<br><br>
 
-# Getters & Setters
-```typescript
-class Thing {
-  _size = 0;
- 
-  get size(): number {
-    return this._size;
-  }
- 
-  set size(value: string | number | boolean) {
-    let num = Number(value);
- 
-    // Don't allow NaN, Infinity, etc
- 
-    if (!Number.isFinite(num)) {
-      this._size = 0;
-      return;
-    }
- 
-    this._size = num;
-  }
-}
-```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
