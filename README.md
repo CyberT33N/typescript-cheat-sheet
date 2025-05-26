@@ -3480,6 +3480,44 @@ export declare global {
 ```
 
 
+## Validate using ZOD
+
+env.ts
+```typescript
+// ==== Imports ====
+import { z } from 'zod'
+
+const envSchema = z.object({
+    // 🔧 ==== Google Gemini ====
+    GEMINI_API_KEY: z.string().min(1),
+    GEMINI_DEFAULT_OUTPUT_DIMENSION: z.coerce.number().min(1),
+    GEMINI_DEFAULT_EMBEDDING_MODEL: z.string().min(1),
+
+    // 🔧 Pinecone
+    PINECONE_API_KEY: z.string().min(1)
+})
+
+const env = envSchema.parse(process.env)
+
+export type Environment = z.infer<typeof envSchema>
+
+export default env
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
