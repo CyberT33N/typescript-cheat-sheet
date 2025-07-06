@@ -2371,6 +2371,17 @@ function createPerson({name, age}: Person) { /* ... */ }
 
 
 
+## Parameter
+
+### Get parameters type of function
+```
+import { embedMany, type EmbeddingModel } from 'ai'
+
+type EmbedManyOptions = Omit<Parameters<typeof embedMany>[0], 'model' | 'values'>
+
+
+```
+
 
 
 
