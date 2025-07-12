@@ -3659,6 +3659,7 @@ interface Window {
 
 ## Type Guards
 - https://www.npmjs.com/package/@sindresorhus/is/v/0.7.0
+- lodash
 
 
 ## API
