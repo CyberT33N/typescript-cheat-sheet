@@ -3657,6 +3657,10 @@ interface Window {
 
 # Utils
 
+## Type Guards
+- https://www.npmjs.com/package/@sindresorhus/is/v/0.7.0
+
+
 ## API
 - [ethod #1 (recommende](https://trpc.io/)
 
